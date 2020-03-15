@@ -1,0 +1,10 @@
+{
+    "nodes":"chenjianwei-pc:6379",
+    "password":"",
+    "database":0,
+    "maxActive":20,
+    "maxWait":200,
+    "maxIdle":400,
+    "minIdledle":100,
+    "timeout":5000
+}
