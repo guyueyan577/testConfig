@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.testConfig.message.KafkaSendResultHandler;
+import com.example.testConfig.config.KafkaSendResultHandler;
 import com.example.testConfig.testModel.RedisTestModel;
 
 import lombok.extern.slf4j.Slf4j;
