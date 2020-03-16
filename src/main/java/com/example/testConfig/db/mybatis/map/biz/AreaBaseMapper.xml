@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.AreaBaseMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.AreaBase">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="first_level_area_id" jdbcType="VARCHAR" property="firstLevelAreaId" />
+    <result column="second_level_area_id" jdbcType="VARCHAR" property="secondLevelAreaId" />
+    <result column="parent_area_id" jdbcType="VARCHAR" property="parentAreaId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="sub_area_type" jdbcType="INTEGER" property="subAreaType" />
+    <result column="area_address" jdbcType="VARCHAR" property="areaAddress" />
+    <result column="area_manage_region" jdbcType="VARCHAR" property="areaManageRegion" />
+    <result column="area_principal_name" jdbcType="VARCHAR" property="areaPrincipalName" />
+    <result column="area_principal_phone_number" jdbcType="VARCHAR" property="areaPrincipalPhoneNumber" />
+    <result column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="workflow_id" jdbcType="VARCHAR" property="workflowId" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, area_name, project_id, project_name, first_level_area_id, second_level_area_id, 
+    parent_area_id, level, sub_area_type, area_address, area_manage_region, area_principal_name, 
+    area_principal_phone_number, admin_id, create_time, update_time, workflow_id, deleted
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from area_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area_base
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from area_base
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBaseExample">
+    delete from area_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBase">
+    insert into area_base (id, area_name, project_id, 
+      project_name, first_level_area_id, second_level_area_id, 
+      parent_area_id, level, sub_area_type, 
+      area_address, area_manage_region, area_principal_name, 
+      area_principal_phone_number, admin_id, create_time, 
+      update_time, workflow_id, deleted
+      )
+    values (#{id,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{firstLevelAreaId,jdbcType=VARCHAR}, #{secondLevelAreaId,jdbcType=VARCHAR}, 
+      #{parentAreaId,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{subAreaType,jdbcType=INTEGER}, 
+      #{areaAddress,jdbcType=VARCHAR}, #{areaManageRegion,jdbcType=VARCHAR}, #{areaPrincipalName,jdbcType=VARCHAR}, 
+      #{areaPrincipalPhoneNumber,jdbcType=VARCHAR}, #{adminId,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT}, #{workflowId,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBase">
+    insert into area_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="firstLevelAreaId != null">
+        first_level_area_id,
+      </if>
+      <if test="secondLevelAreaId != null">
+        second_level_area_id,
+      </if>
+      <if test="parentAreaId != null">
+        parent_area_id,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="subAreaType != null">
+        sub_area_type,
+      </if>
+      <if test="areaAddress != null">
+        area_address,
+      </if>
+      <if test="areaManageRegion != null">
+        area_manage_region,
+      </if>
+      <if test="areaPrincipalName != null">
+        area_principal_name,
+      </if>
+      <if test="areaPrincipalPhoneNumber != null">
+        area_principal_phone_number,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="workflowId != null">
+        workflow_id,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelAreaId != null">
+        #{firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelAreaId != null">
+        #{secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAreaId != null">
+        #{parentAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="subAreaType != null">
+        #{subAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="areaAddress != null">
+        #{areaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="areaManageRegion != null">
+        #{areaManageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPrincipalName != null">
+        #{areaPrincipalName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPrincipalPhoneNumber != null">
+        #{areaPrincipalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="workflowId != null">
+        #{workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBaseExample" resultType="java.lang.Long">
+    select count(*) from area_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update area_base
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null">
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null">
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstLevelAreaId != null">
+        first_level_area_id = #{record.firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondLevelAreaId != null">
+        second_level_area_id = #{record.secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentAreaId != null">
+        parent_area_id = #{record.parentAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.subAreaType != null">
+        sub_area_type = #{record.subAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaAddress != null">
+        area_address = #{record.areaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaManageRegion != null">
+        area_manage_region = #{record.areaManageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaPrincipalName != null">
+        area_principal_name = #{record.areaPrincipalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaPrincipalPhoneNumber != null">
+        area_principal_phone_number = #{record.areaPrincipalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.workflowId != null">
+        workflow_id = #{record.workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update area_base
+    set id = #{record.id,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      first_level_area_id = #{record.firstLevelAreaId,jdbcType=VARCHAR},
+      second_level_area_id = #{record.secondLevelAreaId,jdbcType=VARCHAR},
+      parent_area_id = #{record.parentAreaId,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      sub_area_type = #{record.subAreaType,jdbcType=INTEGER},
+      area_address = #{record.areaAddress,jdbcType=VARCHAR},
+      area_manage_region = #{record.areaManageRegion,jdbcType=VARCHAR},
+      area_principal_name = #{record.areaPrincipalName,jdbcType=VARCHAR},
+      area_principal_phone_number = #{record.areaPrincipalPhoneNumber,jdbcType=VARCHAR},
+      admin_id = #{record.adminId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      workflow_id = #{record.workflowId,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBase">
+    update area_base
+    <set>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelAreaId != null">
+        first_level_area_id = #{firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelAreaId != null">
+        second_level_area_id = #{secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAreaId != null">
+        parent_area_id = #{parentAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="subAreaType != null">
+        sub_area_type = #{subAreaType,jdbcType=INTEGER},
+      </if>
+      <if test="areaAddress != null">
+        area_address = #{areaAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="areaManageRegion != null">
+        area_manage_region = #{areaManageRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPrincipalName != null">
+        area_principal_name = #{areaPrincipalName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPrincipalPhoneNumber != null">
+        area_principal_phone_number = #{areaPrincipalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="workflowId != null">
+        workflow_id = #{workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.AreaBase">
+    update area_base
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      first_level_area_id = #{firstLevelAreaId,jdbcType=VARCHAR},
+      second_level_area_id = #{secondLevelAreaId,jdbcType=VARCHAR},
+      parent_area_id = #{parentAreaId,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      sub_area_type = #{subAreaType,jdbcType=INTEGER},
+      area_address = #{areaAddress,jdbcType=VARCHAR},
+      area_manage_region = #{areaManageRegion,jdbcType=VARCHAR},
+      area_principal_name = #{areaPrincipalName,jdbcType=VARCHAR},
+      area_principal_phone_number = #{areaPrincipalPhoneNumber,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      workflow_id = #{workflowId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

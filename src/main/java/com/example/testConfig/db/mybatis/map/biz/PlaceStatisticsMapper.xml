@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.PlaceStatisticsMapper">
+    <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.PlaceStatistics">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="agent_id" property="agentId" jdbcType="VARCHAR"/>
+        <result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+        <result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+        <result column="place_id" property="placeId" jdbcType="VARCHAR"/>
+        <result column="year_month_time" property="yearMonthTime" jdbcType="INTEGER"/>
+        <result column="fire_number" property="fireNumber" jdbcType="INTEGER"/>
+        <result column="fault_number" property="faultNumber" jdbcType="INTEGER"/>
+        <result column="event_number" property="eventNumber" jdbcType="INTEGER"/>
+        <result column="hidden_number" property="hiddenNumber" jdbcType="INTEGER"/>
+        <result column="hidden_handle_number" property="hiddenHandleNumber" jdbcType="INTEGER"/>
+        <result column="fire_handle_in_15m" property="fireHandleIn15m" jdbcType="INTEGER"/>
+        <result column="fire_handle_in_1h" property="fireHandleIn1h" jdbcType="INTEGER"/>
+        <result column="fire_handle_in_1d" property="fireHandleIn1d" jdbcType="INTEGER"/>
+        <result column="fire_handle_after_1d" property="fireHandleAfter1d" jdbcType="INTEGER"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="INTEGER"/>
+        <result column="phone_fail_number" property="phoneFailNumber" jdbcType="INTEGER"/>
+        <result column="message_number" property="messageNumber" jdbcType="INTEGER"/>
+        <result column="message_fail_number" property="messageFailNumber" jdbcType="INTEGER"/>
+        <result column="app_push_number" property="appPushNumber" jdbcType="INTEGER"/>
+        <result column="app_push_fail_number" property="appPushFailNumber" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, agent_id, project_id, area_id, place_id, year_month_time, fire_number, fault_number, 
+    event_number, hidden_number, hidden_handle_number, fire_handle_in_15m, fire_handle_in_1h, 
+    fire_handle_in_1d, fire_handle_after_1d, phone_number, phone_fail_number, message_number, 
+    message_fail_number, app_push_number, app_push_fail_number
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatisticsExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from place_statistics
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from place_statistics
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from place_statistics
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatisticsExample">
+        delete from place_statistics
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatistics">
+    insert into place_statistics (id, agent_id, project_id, 
+      area_id, place_id, year_month_time, 
+      fire_number, fault_number, event_number, 
+      hidden_number, hidden_handle_number, fire_handle_in_15m, 
+      fire_handle_in_1h, fire_handle_in_1d, fire_handle_after_1d, 
+      phone_number, phone_fail_number, message_number, 
+      message_fail_number, app_push_number, app_push_fail_number
+      )
+    values (#{id,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{placeId,jdbcType=VARCHAR}, #{yearMonthTime,jdbcType=INTEGER}, 
+      #{fireNumber,jdbcType=INTEGER}, #{faultNumber,jdbcType=INTEGER}, #{eventNumber,jdbcType=INTEGER}, 
+      #{hiddenNumber,jdbcType=INTEGER}, #{hiddenHandleNumber,jdbcType=INTEGER}, #{fireHandleIn15m,jdbcType=INTEGER}, 
+      #{fireHandleIn1h,jdbcType=INTEGER}, #{fireHandleIn1d,jdbcType=INTEGER}, #{fireHandleAfter1d,jdbcType=INTEGER}, 
+      #{phoneNumber,jdbcType=INTEGER}, #{phoneFailNumber,jdbcType=INTEGER}, #{messageNumber,jdbcType=INTEGER}, 
+      #{messageFailNumber,jdbcType=INTEGER}, #{appPushNumber,jdbcType=INTEGER}, #{appPushFailNumber,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatistics">
+        insert into place_statistics
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="agentId != null">
+                agent_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="placeId != null">
+                place_id,
+            </if>
+            <if test="yearMonthTime != null">
+                year_month_time,
+            </if>
+            <if test="fireNumber != null">
+                fire_number,
+            </if>
+            <if test="faultNumber != null">
+                fault_number,
+            </if>
+            <if test="eventNumber != null">
+                event_number,
+            </if>
+            <if test="hiddenNumber != null">
+                hidden_number,
+            </if>
+            <if test="hiddenHandleNumber != null">
+                hidden_handle_number,
+            </if>
+            <if test="fireHandleIn15m != null">
+                fire_handle_in_15m,
+            </if>
+            <if test="fireHandleIn1h != null">
+                fire_handle_in_1h,
+            </if>
+            <if test="fireHandleIn1d != null">
+                fire_handle_in_1d,
+            </if>
+            <if test="fireHandleAfter1d != null">
+                fire_handle_after_1d,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="phoneFailNumber != null">
+                phone_fail_number,
+            </if>
+            <if test="messageNumber != null">
+                message_number,
+            </if>
+            <if test="messageFailNumber != null">
+                message_fail_number,
+            </if>
+            <if test="appPushNumber != null">
+                app_push_number,
+            </if>
+            <if test="appPushFailNumber != null">
+                app_push_fail_number,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="agentId != null">
+                #{agentId,jdbcType=VARCHAR},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=VARCHAR},
+            </if>
+            <if test="placeId != null">
+                #{placeId,jdbcType=VARCHAR},
+            </if>
+            <if test="yearMonthTime != null">
+                #{yearMonthTime,jdbcType=INTEGER},
+            </if>
+            <if test="fireNumber != null">
+                #{fireNumber,jdbcType=INTEGER},
+            </if>
+            <if test="faultNumber != null">
+                #{faultNumber,jdbcType=INTEGER},
+            </if>
+            <if test="eventNumber != null">
+                #{eventNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hiddenNumber != null">
+                #{hiddenNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hiddenHandleNumber != null">
+                #{hiddenHandleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn15m != null">
+                #{fireHandleIn15m,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn1h != null">
+                #{fireHandleIn1h,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn1d != null">
+                #{fireHandleIn1d,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleAfter1d != null">
+                #{fireHandleAfter1d,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=INTEGER},
+            </if>
+            <if test="phoneFailNumber != null">
+                #{phoneFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="messageNumber != null">
+                #{messageNumber,jdbcType=INTEGER},
+            </if>
+            <if test="messageFailNumber != null">
+                #{messageFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="appPushNumber != null">
+                #{appPushNumber,jdbcType=INTEGER},
+            </if>
+            <if test="appPushFailNumber != null">
+                #{appPushFailNumber,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatisticsExample"
+            resultType="java.lang.Integer">
+        select count(*) from place_statistics
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update place_statistics
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.agentId != null">
+                agent_id = #{record.agentId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.projectId != null">
+                project_id = #{record.projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.areaId != null">
+                area_id = #{record.areaId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.placeId != null">
+                place_id = #{record.placeId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.yearMonthTime != null">
+                year_month_time = #{record.yearMonthTime,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireNumber != null">
+                fire_number = #{record.fireNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.faultNumber != null">
+                fault_number = #{record.faultNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.eventNumber != null">
+                event_number = #{record.eventNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.hiddenNumber != null">
+                hidden_number = #{record.hiddenNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.hiddenHandleNumber != null">
+                hidden_handle_number = #{record.hiddenHandleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn15m != null">
+                fire_handle_in_15m = #{record.fireHandleIn15m,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn1h != null">
+                fire_handle_in_1h = #{record.fireHandleIn1h,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn1d != null">
+                fire_handle_in_1d = #{record.fireHandleIn1d,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleAfter1d != null">
+                fire_handle_after_1d = #{record.fireHandleAfter1d,jdbcType=INTEGER},
+            </if>
+            <if test="record.phoneNumber != null">
+                phone_number = #{record.phoneNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.phoneFailNumber != null">
+                phone_fail_number = #{record.phoneFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.messageNumber != null">
+                message_number = #{record.messageNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.messageFailNumber != null">
+                message_fail_number = #{record.messageFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.appPushNumber != null">
+                app_push_number = #{record.appPushNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.appPushFailNumber != null">
+                app_push_fail_number = #{record.appPushFailNumber,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update place_statistics
+        set id = #{record.id,jdbcType=VARCHAR},
+        agent_id = #{record.agentId,jdbcType=VARCHAR},
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+        area_id = #{record.areaId,jdbcType=VARCHAR},
+        place_id = #{record.placeId,jdbcType=VARCHAR},
+        year_month_time = #{record.yearMonthTime,jdbcType=INTEGER},
+        fire_number = #{record.fireNumber,jdbcType=INTEGER},
+        fault_number = #{record.faultNumber,jdbcType=INTEGER},
+        event_number = #{record.eventNumber,jdbcType=INTEGER},
+        hidden_number = #{record.hiddenNumber,jdbcType=INTEGER},
+        hidden_handle_number = #{record.hiddenHandleNumber,jdbcType=INTEGER},
+        fire_handle_in_15m = #{record.fireHandleIn15m,jdbcType=INTEGER},
+        fire_handle_in_1h = #{record.fireHandleIn1h,jdbcType=INTEGER},
+        fire_handle_in_1d = #{record.fireHandleIn1d,jdbcType=INTEGER},
+        fire_handle_after_1d = #{record.fireHandleAfter1d,jdbcType=INTEGER},
+        phone_number = #{record.phoneNumber,jdbcType=INTEGER},
+        phone_fail_number = #{record.phoneFailNumber,jdbcType=INTEGER},
+        message_number = #{record.messageNumber,jdbcType=INTEGER},
+        message_fail_number = #{record.messageFailNumber,jdbcType=INTEGER},
+        app_push_number = #{record.appPushNumber,jdbcType=INTEGER},
+        app_push_fail_number = #{record.appPushFailNumber,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatistics">
+        update place_statistics
+        <set>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=VARCHAR},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=VARCHAR},
+            </if>
+            <if test="placeId != null">
+                place_id = #{placeId,jdbcType=VARCHAR},
+            </if>
+            <if test="yearMonthTime != null">
+                year_month_time = #{yearMonthTime,jdbcType=INTEGER},
+            </if>
+            <if test="fireNumber != null">
+                fire_number = #{fireNumber,jdbcType=INTEGER},
+            </if>
+            <if test="faultNumber != null">
+                fault_number = #{faultNumber,jdbcType=INTEGER},
+            </if>
+            <if test="eventNumber != null">
+                event_number = #{eventNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hiddenNumber != null">
+                hidden_number = #{hiddenNumber,jdbcType=INTEGER},
+            </if>
+            <if test="hiddenHandleNumber != null">
+                hidden_handle_number = #{hiddenHandleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn15m != null">
+                fire_handle_in_15m = #{fireHandleIn15m,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn1h != null">
+                fire_handle_in_1h = #{fireHandleIn1h,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleIn1d != null">
+                fire_handle_in_1d = #{fireHandleIn1d,jdbcType=INTEGER},
+            </if>
+            <if test="fireHandleAfter1d != null">
+                fire_handle_after_1d = #{fireHandleAfter1d,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=INTEGER},
+            </if>
+            <if test="phoneFailNumber != null">
+                phone_fail_number = #{phoneFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="messageNumber != null">
+                message_number = #{messageNumber,jdbcType=INTEGER},
+            </if>
+            <if test="messageFailNumber != null">
+                message_fail_number = #{messageFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="appPushNumber != null">
+                app_push_number = #{appPushNumber,jdbcType=INTEGER},
+            </if>
+            <if test="appPushFailNumber != null">
+                app_push_fail_number = #{appPushFailNumber,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatistics">
+    update place_statistics
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      place_id = #{placeId,jdbcType=VARCHAR},
+      year_month_time = #{yearMonthTime,jdbcType=INTEGER},
+      fire_number = #{fireNumber,jdbcType=INTEGER},
+      fault_number = #{faultNumber,jdbcType=INTEGER},
+      event_number = #{eventNumber,jdbcType=INTEGER},
+      hidden_number = #{hiddenNumber,jdbcType=INTEGER},
+      hidden_handle_number = #{hiddenHandleNumber,jdbcType=INTEGER},
+      fire_handle_in_15m = #{fireHandleIn15m,jdbcType=INTEGER},
+      fire_handle_in_1h = #{fireHandleIn1h,jdbcType=INTEGER},
+      fire_handle_in_1d = #{fireHandleIn1d,jdbcType=INTEGER},
+      fire_handle_after_1d = #{fireHandleAfter1d,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=INTEGER},
+      phone_fail_number = #{phoneFailNumber,jdbcType=INTEGER},
+      message_number = #{messageNumber,jdbcType=INTEGER},
+      message_fail_number = #{messageFailNumber,jdbcType=INTEGER},
+      app_push_number = #{appPushNumber,jdbcType=INTEGER},
+      app_push_fail_number = #{appPushFailNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+    <!-- 下面为自定义的查询语句 -->
+    <!-- 获取指定条件的各种数据统计之和 -->
+    <select id="sumStatisticsByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PlaceStatisticsExample"
+            resultMap="BaseResultMap">
+        select
+        IFNULL( sum(fire_number),0) as fire_number,
+        IFNULL( sum(fault_number),0) as fault_number,
+        IFNULL( sum(event_number),0) as event_number,
+        IFNULL( sum(hidden_number),0) as hidden_number,
+        IFNULL( sum(hidden_handle_number),0) as hidden_handle_number,
+        IFNULL( sum(fire_handle_in_15m),0) as fire_handle_in_15m,
+        IFNULL( sum(fire_handle_in_1h),0) as fire_handle_in_1h,
+        IFNULL( sum(fire_handle_in_1d),0) as fire_handle_in_1d,
+        IFNULL( sum(fire_handle_after_1d),0) as fire_handle_after_1d,
+        IFNULL( sum(phone_number),0) as phone_number,
+        IFNULL( sum(phone_fail_number),0) as phone_fail_number,
+        IFNULL( sum(message_number),0) as message_number,
+        IFNULL( sum(message_fail_number),0) as message_fail_number,
+        IFNULL( sum(app_push_number),0) as app_push_number,
+        IFNULL( sum(app_push_fail_number),0) as app_push_fail_number
+        from place_statistics
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+
+
+    <!-- 发生火警或其他操作时，修改数据表中数据方式为添加指定字段的数量 -->
+    <update id="updateByExampleSelectiveToAdd" parameterType="map">
+        update place_statistics
+        <set>
+            <!-- <if test="record.id != null">
+              id = #{record.id,jdbcType=VARCHAR},
+            </if> -->
+            <if test="record.agentId != null">
+                agent_id = #{record.agentId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.projectId != null">
+                project_id = #{record.projectId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.placeId != null">
+                place_id = #{record.placeId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.yearMonthTime != null">
+                year_month_time = #{record.yearMonthTime,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireNumber != null">
+                fire_number = fire_number + #{record.fireNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.faultNumber != null">
+                fault_number = fault_number + #{record.faultNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.eventNumber != null">
+                event_number = event_number + #{record.eventNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.hiddenNumber != null">
+                hidden_number = hidden_number + #{record.hiddenNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.hiddenHandleNumber != null">
+                hidden_handle_number = hidden_handle_number + #{record.hiddenHandleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn15m != null">
+                fire_handle_in_15m = fire_handle_in_15m + #{record.fireHandleIn15m,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn1h != null">
+                fire_handle_in_1h = fire_handle_in_1h + #{record.fireHandleIn1h,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleIn1d != null">
+                fire_handle_in_1d = fire_handle_in_1d + #{record.fireHandleIn1d,jdbcType=INTEGER},
+            </if>
+            <if test="record.fireHandleAfter1d != null">
+                fire_handle_after_1d = fire_handle_after_1d + #{record.fireHandleAfter1d,jdbcType=INTEGER},
+            </if>
+            <if test="record.phoneNumber != null">
+                phone_number = phone_number + #{record.phoneNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.phoneFailNumber != null">
+                phone_fail_number = phone_fail_number + #{record.phoneFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.messageNumber != null">
+                message_number = message_number + #{record.messageNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.messageFailNumber != null">
+                message_fail_number = message_fail_number + #{record.messageFailNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.appPushNumber != null">
+                app_push_number = app_push_number + #{record.appPushNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.appPushFailNumber != null">
+                app_push_fail_number = app_push_fail_number + #{record.appPushFailNumber,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+
+    <!-- 查询指定条件的火警、故障、事件、隐患数量，按项目分组 -->
+    <select id="sumAlertCountWithTopN" parameterType="map" resultMap="BaseResultMap">
+        select
+        project_id,
+        sum(fire_number) as fire_number,
+        sum(fault_number) as fault_number,
+        sum(event_number) as event_number,
+        sum(hidden_number) as hidden_number,
+        sum(hidden_handle_number) as hidden_handle_number
+        from place_statistics
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+        group by project_id
+        order by ${example.orderByClause}
+        limit #{topn,jdbcType=INTEGER}
+    </select>
+
+    <!-- 获取app端获取区域管理员几个月内火警数/故障数/事件数等统计信息 -->
+    <select id="selectAppSumStatisticsByExampleArea" resultMap="BaseResultMap">
+        select
+        IFNULL(sum(fire_number),0) as fire_number,
+        IFNULL(sum(fault_number),0) as fault_number,
+        IFNULL(sum(event_number),0) as event_number,
+        IFNULL(sum(hidden_number),0) as hidden_number,
+        IFNULL(sum(hidden_handle_number),0) as hidden_handle_number,
+        IFNULL(sum(fire_handle_in_15m),0) as fire_handle_in_15m,
+        IFNULL(sum(fire_handle_in_1h),0) as fire_handle_in_1h,
+        IFNULL(sum(fire_handle_in_1d),0) as fire_handle_in_1d,
+        IFNULL(sum(fire_handle_after_1d),0) as fire_handle_after_1d,
+        IFNULL(sum(phone_number),0) as phone_number,
+        IFNULL(sum(phone_fail_number),0) as phone_fail_number,
+        IFNULL(sum(message_number),0) as message_number,
+        IFNULL(sum(message_fail_number),0) as message_fail_number,
+        IFNULL(sum(app_push_number),0) as app_push_number,
+        IFNULL(sum(app_push_fail_number),0) as app_push_fail_number
+        from place_statistics INNER JOIN user_place on place_statistics.place_id = user_place.place_id
+        <where>
+            <if test="projectId != null">
+                and place_statistics.project_id = #{projectId,jdbcType=VARCHAR}
+            </if>
+            <if test="yearMonth != null">
+                and place_statistics.year_month_time = #{yearMonth,jdbcType=INTEGER}
+            </if>
+            <if test="userId != null">
+                and user_place.user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!-- 获取app端获取子项目管理员几个月内火警数/故障数/事件数等统计信息 -->
+    <select id="selectAppSumStatisticsByExampleSub" resultMap="BaseResultMap">
+        select
+        IFNULL(sum(fire_number),0) as fire_number,
+        IFNULL(sum(fault_number),0) as fault_number,
+        IFNULL(sum(event_number),0) as event_number,
+        IFNULL(sum(hidden_number),0) as hidden_number,
+        IFNULL(sum(hidden_handle_number),0) as hidden_handle_number,
+        IFNULL(sum(fire_handle_in_15m),0) as fire_handle_in_15m,
+        IFNULL(sum(fire_handle_in_1h),0) as fire_handle_in_1h,
+        IFNULL(sum(fire_handle_in_1d),0) as fire_handle_in_1d,
+        IFNULL(sum(fire_handle_after_1d),0) as fire_handle_after_1d,
+        IFNULL(sum(phone_number),0) as phone_number,
+        IFNULL(sum(phone_fail_number),0) as phone_fail_number,
+        IFNULL(sum(message_number),0) as message_number,
+        IFNULL(sum(message_fail_number),0) as message_fail_number,
+        IFNULL(sum(app_push_number),0) as app_push_number,
+        IFNULL(sum(app_push_fail_number),0) as app_push_fail_number
+        from place_statistics
+        <where>
+            <if test="projectId != null">
+                and place_statistics.project_id = #{projectId,jdbcType=VARCHAR}
+            </if>
+            <if test="yearMonth != null">
+                and place_statistics.year_month_time = #{yearMonth,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+
+    <!-- 获取app端获取区域管理员几个月内火警数/故障数/事件数等统计信息 -->
+    <select id="selectAppSumStatisticsByExampleMain" resultMap="BaseResultMap">
+        select
+        IFNULL(sum(fire_number),0) as fire_number,
+        IFNULL(sum(fault_number),0) as fault_number,
+        IFNULL(sum(event_number),0) as event_number,
+        IFNULL(sum(hidden_number),0) as hidden_number,
+        IFNULL(sum(hidden_handle_number),0) as hidden_handle_number,
+        IFNULL(sum(fire_handle_in_15m),0) as fire_handle_in_15m,
+        IFNULL(sum(fire_handle_in_1h),0) as fire_handle_in_1h,
+        IFNULL(sum(fire_handle_in_1d),0) as fire_handle_in_1d,
+        IFNULL(sum(fire_handle_after_1d),0) as fire_handle_after_1d,
+        IFNULL(sum(phone_number),0) as phone_number,
+        IFNULL(sum(phone_fail_number),0) as phone_fail_number,
+        IFNULL(sum(message_number),0) as message_number,
+        IFNULL(sum(message_fail_number),0) as message_fail_number,
+        IFNULL(sum(app_push_number),0) as app_push_number,
+        IFNULL(sum(app_push_fail_number),0) as app_push_fail_number
+        from place_statistics as ps INNER JOIN user_project as up on ps.project_id = up.project_id
+        <where>
+            <if test="projectId != null">
+                and ps.project_id = #{projectId,jdbcType=VARCHAR}
+            </if>
+            <if test="yearMonth != null">
+                and ps.year_month_time = #{yearMonth,jdbcType=INTEGER}
+            </if>
+            <if test="userId != null">
+                and up.user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

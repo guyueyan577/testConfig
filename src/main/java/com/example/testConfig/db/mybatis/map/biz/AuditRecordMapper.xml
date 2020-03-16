@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.AuditRecordMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.AuditRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_applicant_id" jdbcType="VARCHAR" property="projectApplicantId" />
+    <result column="project_admin_id" jdbcType="VARCHAR" property="projectAdminId" />
+    <result column="audit_state" jdbcType="INTEGER" property="auditState" />
+    <result column="audit_method" jdbcType="INTEGER" property="auditMethod" />
+    <result column="auditor_id" jdbcType="VARCHAR" property="auditorId" />
+    <result column="audit_remark" jdbcType="VARCHAR" property="auditRemark" />
+    <result column="urgent" jdbcType="BIT" property="urgent" />
+    <result column="urgent_reason" jdbcType="VARCHAR" property="urgentReason" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, agent_id, project_id, project_name, project_applicant_id, project_admin_id, audit_state, 
+    audit_method, auditor_id, audit_remark, urgent, urgent_reason, deleted, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from audit_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from audit_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from audit_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecordExample">
+    delete from audit_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecord">
+    insert into audit_record (id, agent_id, project_id, 
+      project_name, project_applicant_id, project_admin_id, 
+      audit_state, audit_method, auditor_id, 
+      audit_remark, urgent, urgent_reason, 
+      deleted, create_time, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{projectApplicantId,jdbcType=VARCHAR}, #{projectAdminId,jdbcType=VARCHAR}, 
+      #{auditState,jdbcType=INTEGER}, #{auditMethod,jdbcType=INTEGER}, #{auditorId,jdbcType=VARCHAR}, 
+      #{auditRemark,jdbcType=VARCHAR}, #{urgent,jdbcType=BIT}, #{urgentReason,jdbcType=VARCHAR}, 
+      #{deleted,jdbcType=BIT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecord">
+    insert into audit_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectApplicantId != null">
+        project_applicant_id,
+      </if>
+      <if test="projectAdminId != null">
+        project_admin_id,
+      </if>
+      <if test="auditState != null">
+        audit_state,
+      </if>
+      <if test="auditMethod != null">
+        audit_method,
+      </if>
+      <if test="auditorId != null">
+        auditor_id,
+      </if>
+      <if test="auditRemark != null">
+        audit_remark,
+      </if>
+      <if test="urgent != null">
+        urgent,
+      </if>
+      <if test="urgentReason != null">
+        urgent_reason,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectApplicantId != null">
+        #{projectApplicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAdminId != null">
+        #{projectAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditState != null">
+        #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="auditMethod != null">
+        #{auditMethod,jdbcType=INTEGER},
+      </if>
+      <if test="auditorId != null">
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditRemark != null">
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="urgent != null">
+        #{urgent,jdbcType=BIT},
+      </if>
+      <if test="urgentReason != null">
+        #{urgentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecordExample" resultType="java.lang.Long">
+    select count(*) from audit_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update audit_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentId != null">
+        agent_id = #{record.agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null">
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectApplicantId != null">
+        project_applicant_id = #{record.projectApplicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectAdminId != null">
+        project_admin_id = #{record.projectAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditState != null">
+        audit_state = #{record.auditState,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditMethod != null">
+        audit_method = #{record.auditMethod,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditorId != null">
+        auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditRemark != null">
+        audit_remark = #{record.auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urgent != null">
+        urgent = #{record.urgent,jdbcType=BIT},
+      </if>
+      <if test="record.urgentReason != null">
+        urgent_reason = #{record.urgentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update audit_record
+    set id = #{record.id,jdbcType=VARCHAR},
+      agent_id = #{record.agentId,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      project_applicant_id = #{record.projectApplicantId,jdbcType=VARCHAR},
+      project_admin_id = #{record.projectAdminId,jdbcType=VARCHAR},
+      audit_state = #{record.auditState,jdbcType=INTEGER},
+      audit_method = #{record.auditMethod,jdbcType=INTEGER},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      audit_remark = #{record.auditRemark,jdbcType=VARCHAR},
+      urgent = #{record.urgent,jdbcType=BIT},
+      urgent_reason = #{record.urgentReason,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecord">
+    update audit_record
+    <set>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectApplicantId != null">
+        project_applicant_id = #{projectApplicantId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAdminId != null">
+        project_admin_id = #{projectAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditState != null">
+        audit_state = #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="auditMethod != null">
+        audit_method = #{auditMethod,jdbcType=INTEGER},
+      </if>
+      <if test="auditorId != null">
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditRemark != null">
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="urgent != null">
+        urgent = #{urgent,jdbcType=BIT},
+      </if>
+      <if test="urgentReason != null">
+        urgent_reason = #{urgentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.AuditRecord">
+    update audit_record
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      project_applicant_id = #{projectApplicantId,jdbcType=VARCHAR},
+      project_admin_id = #{projectAdminId,jdbcType=VARCHAR},
+      audit_state = #{auditState,jdbcType=INTEGER},
+      audit_method = #{auditMethod,jdbcType=INTEGER},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      urgent = #{urgent,jdbcType=BIT},
+      urgent_reason = #{urgentReason,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

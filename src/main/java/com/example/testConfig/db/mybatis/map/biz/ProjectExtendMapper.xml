@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.ProjectExtendMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.ProjectExtend">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="manage_title" jdbcType="VARCHAR" property="manageTitle" />
+    <result column="organization_code" jdbcType="VARCHAR" property="organizationCode" />
+    <result column="security_charge_person_name" jdbcType="VARCHAR" property="securityChargePersonName" />
+    <result column="security_charge_person_phone" jdbcType="VARCHAR" property="securityChargePersonPhone" />
+    <result column="security_charge_person_card" jdbcType="VARCHAR" property="securityChargePersonCard" />
+    <result column="security_manager_name" jdbcType="VARCHAR" property="securityManagerName" />
+    <result column="security_manager_phone" jdbcType="VARCHAR" property="securityManagerPhone" />
+    <result column="security_manager_card" jdbcType="VARCHAR" property="securityManagerCard" />
+    <result column="legal_representative_name" jdbcType="VARCHAR" property="legalRepresentativeName" />
+    <result column="legal_representative_phone" jdbcType="VARCHAR" property="legalRepresentativePhone" />
+    <result column="legal_representative_card" jdbcType="VARCHAR" property="legalRepresentativeCard" />
+    <result column="jurisdiction_unit_name" jdbcType="VARCHAR" property="jurisdictionUnitName" />
+    <result column="economic_ownership_code" jdbcType="INTEGER" property="economicOwnershipCode" />
+    <result column="supervise_level_code" jdbcType="INTEGER" property="superviseLevelCode" />
+    <result column="full_parttime_manager_name" jdbcType="VARCHAR" property="fullParttimeManagerName" />
+    <result column="full_parttime_manager_phone" jdbcType="VARCHAR" property="fullParttimeManagerPhone" />
+    <result column="full_parttime_manager_card" jdbcType="VARCHAR" property="fullParttimeManagerCard" />
+    <result column="super_unit_name" jdbcType="VARCHAR" property="superUnitName" />
+    <result column="staff_count" jdbcType="BIGINT" property="staffCount" />
+    <result column="fixed_assets" jdbcType="BIGINT" property="fixedAssets" />
+    <result column="maintenance_company" jdbcType="VARCHAR" property="maintenanceCompany" />
+    <result column="construction_company" jdbcType="VARCHAR" property="constructionCompany" />
+    <result column="sale_company" jdbcType="VARCHAR" property="saleCompany" />
+    <result column="industry_code" jdbcType="INTEGER" property="industryCode" />
+    <result column="supervise_type_code" jdbcType="INTEGER" property="superviseTypeCode" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, project_id, manage_title, organization_code, security_charge_person_name, security_charge_person_phone, 
+    security_charge_person_card, security_manager_name, security_manager_phone, security_manager_card, 
+    legal_representative_name, legal_representative_phone, legal_representative_card, 
+    jurisdiction_unit_name, economic_ownership_code, supervise_level_code, full_parttime_manager_name, 
+    full_parttime_manager_phone, full_parttime_manager_card, super_unit_name, staff_count, 
+    fixed_assets, maintenance_company, construction_company, sale_company, industry_code, 
+    supervise_type_code, deleted
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_extend
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from project_extend
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtendExample">
+    delete from project_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtend">
+    insert into project_extend (id, project_id, manage_title, 
+      organization_code, security_charge_person_name, 
+      security_charge_person_phone, security_charge_person_card, 
+      security_manager_name, security_manager_phone, 
+      security_manager_card, legal_representative_name, 
+      legal_representative_phone, legal_representative_card, 
+      jurisdiction_unit_name, economic_ownership_code, 
+      supervise_level_code, full_parttime_manager_name, 
+      full_parttime_manager_phone, full_parttime_manager_card, 
+      super_unit_name, staff_count, fixed_assets, 
+      maintenance_company, construction_company, 
+      sale_company, industry_code, supervise_type_code, 
+      deleted)
+    values (#{id,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{manageTitle,jdbcType=VARCHAR}, 
+      #{organizationCode,jdbcType=VARCHAR}, #{securityChargePersonName,jdbcType=VARCHAR}, 
+      #{securityChargePersonPhone,jdbcType=VARCHAR}, #{securityChargePersonCard,jdbcType=VARCHAR}, 
+      #{securityManagerName,jdbcType=VARCHAR}, #{securityManagerPhone,jdbcType=VARCHAR}, 
+      #{securityManagerCard,jdbcType=VARCHAR}, #{legalRepresentativeName,jdbcType=VARCHAR}, 
+      #{legalRepresentativePhone,jdbcType=VARCHAR}, #{legalRepresentativeCard,jdbcType=VARCHAR}, 
+      #{jurisdictionUnitName,jdbcType=VARCHAR}, #{economicOwnershipCode,jdbcType=INTEGER}, 
+      #{superviseLevelCode,jdbcType=INTEGER}, #{fullParttimeManagerName,jdbcType=VARCHAR}, 
+      #{fullParttimeManagerPhone,jdbcType=VARCHAR}, #{fullParttimeManagerCard,jdbcType=VARCHAR}, 
+      #{superUnitName,jdbcType=VARCHAR}, #{staffCount,jdbcType=BIGINT}, #{fixedAssets,jdbcType=BIGINT}, 
+      #{maintenanceCompany,jdbcType=VARCHAR}, #{constructionCompany,jdbcType=VARCHAR}, 
+      #{saleCompany,jdbcType=VARCHAR}, #{industryCode,jdbcType=INTEGER}, #{superviseTypeCode,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtend">
+    insert into project_extend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="manageTitle != null">
+        manage_title,
+      </if>
+      <if test="organizationCode != null">
+        organization_code,
+      </if>
+      <if test="securityChargePersonName != null">
+        security_charge_person_name,
+      </if>
+      <if test="securityChargePersonPhone != null">
+        security_charge_person_phone,
+      </if>
+      <if test="securityChargePersonCard != null">
+        security_charge_person_card,
+      </if>
+      <if test="securityManagerName != null">
+        security_manager_name,
+      </if>
+      <if test="securityManagerPhone != null">
+        security_manager_phone,
+      </if>
+      <if test="securityManagerCard != null">
+        security_manager_card,
+      </if>
+      <if test="legalRepresentativeName != null">
+        legal_representative_name,
+      </if>
+      <if test="legalRepresentativePhone != null">
+        legal_representative_phone,
+      </if>
+      <if test="legalRepresentativeCard != null">
+        legal_representative_card,
+      </if>
+      <if test="jurisdictionUnitName != null">
+        jurisdiction_unit_name,
+      </if>
+      <if test="economicOwnershipCode != null">
+        economic_ownership_code,
+      </if>
+      <if test="superviseLevelCode != null">
+        supervise_level_code,
+      </if>
+      <if test="fullParttimeManagerName != null">
+        full_parttime_manager_name,
+      </if>
+      <if test="fullParttimeManagerPhone != null">
+        full_parttime_manager_phone,
+      </if>
+      <if test="fullParttimeManagerCard != null">
+        full_parttime_manager_card,
+      </if>
+      <if test="superUnitName != null">
+        super_unit_name,
+      </if>
+      <if test="staffCount != null">
+        staff_count,
+      </if>
+      <if test="fixedAssets != null">
+        fixed_assets,
+      </if>
+      <if test="maintenanceCompany != null">
+        maintenance_company,
+      </if>
+      <if test="constructionCompany != null">
+        construction_company,
+      </if>
+      <if test="saleCompany != null">
+        sale_company,
+      </if>
+      <if test="industryCode != null">
+        industry_code,
+      </if>
+      <if test="superviseTypeCode != null">
+        supervise_type_code,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTitle != null">
+        #{manageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null">
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonName != null">
+        #{securityChargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonPhone != null">
+        #{securityChargePersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonCard != null">
+        #{securityChargePersonCard,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerName != null">
+        #{securityManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerPhone != null">
+        #{securityManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerCard != null">
+        #{securityManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeName != null">
+        #{legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativePhone != null">
+        #{legalRepresentativePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCard != null">
+        #{legalRepresentativeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdictionUnitName != null">
+        #{jurisdictionUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicOwnershipCode != null">
+        #{economicOwnershipCode,jdbcType=INTEGER},
+      </if>
+      <if test="superviseLevelCode != null">
+        #{superviseLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="fullParttimeManagerName != null">
+        #{fullParttimeManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullParttimeManagerPhone != null">
+        #{fullParttimeManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fullParttimeManagerCard != null">
+        #{fullParttimeManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="superUnitName != null">
+        #{superUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCount != null">
+        #{staffCount,jdbcType=INTEGER},
+      </if>
+      <if test="fixedAssets != null">
+        #{fixedAssets,jdbcType=BIGINT},
+      </if>
+      <if test="maintenanceCompany != null">
+        #{maintenanceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionCompany != null">
+        #{constructionCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="saleCompany != null">
+        #{saleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null">
+        #{industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="superviseTypeCode != null">
+        #{superviseTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtendExample" resultType="java.lang.Long">
+    select count(*) from project_extend
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update project_extend
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageTitle != null">
+        manage_title = #{record.manageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null">
+        organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityChargePersonName != null">
+        security_charge_person_name = #{record.securityChargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityChargePersonPhone != null">
+        security_charge_person_phone = #{record.securityChargePersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityChargePersonCard != null">
+        security_charge_person_card = #{record.securityChargePersonCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityManagerName != null">
+        security_manager_name = #{record.securityManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityManagerPhone != null">
+        security_manager_phone = #{record.securityManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityManagerCard != null">
+        security_manager_card = #{record.securityManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativeName != null">
+        legal_representative_name = #{record.legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativePhone != null">
+        legal_representative_phone = #{record.legalRepresentativePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativeCard != null">
+        legal_representative_card = #{record.legalRepresentativeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jurisdictionUnitName != null">
+        jurisdiction_unit_name = #{record.jurisdictionUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economicOwnershipCode != null">
+        economic_ownership_code = #{record.economicOwnershipCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.superviseLevelCode != null">
+        supervise_level_code = #{record.superviseLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.fullParttimeManagerName != null">
+        full_parttime_manager_name = #{record.fullParttimeManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullParttimeManagerPhone != null">
+        full_parttime_manager_phone = #{record.fullParttimeManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullParttimeManagerCard != null">
+        full_parttime_manager_card = #{record.fullParttimeManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.superUnitName != null">
+        super_unit_name = #{record.superUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffCount != null">
+        staff_count = #{record.staffCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.fixedAssets != null">
+        fixed_assets = #{record.fixedAssets,jdbcType=BIGINT},
+      </if>
+      <if test="record.maintenanceCompany != null">
+        maintenance_company = #{record.maintenanceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constructionCompany != null">
+        construction_company = #{record.constructionCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleCompany != null">
+        sale_company = #{record.saleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryCode != null">
+        industry_code = #{record.industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.superviseTypeCode != null">
+        supervise_type_code = #{record.superviseTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update project_extend
+    set id = #{record.id,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      manage_title = #{record.manageTitle,jdbcType=VARCHAR},
+      organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      security_charge_person_name = #{record.securityChargePersonName,jdbcType=VARCHAR},
+      security_charge_person_phone = #{record.securityChargePersonPhone,jdbcType=VARCHAR},
+      security_charge_person_card = #{record.securityChargePersonCard,jdbcType=VARCHAR},
+      security_manager_name = #{record.securityManagerName,jdbcType=VARCHAR},
+      security_manager_phone = #{record.securityManagerPhone,jdbcType=VARCHAR},
+      security_manager_card = #{record.securityManagerCard,jdbcType=VARCHAR},
+      legal_representative_name = #{record.legalRepresentativeName,jdbcType=VARCHAR},
+      legal_representative_phone = #{record.legalRepresentativePhone,jdbcType=VARCHAR},
+      legal_representative_card = #{record.legalRepresentativeCard,jdbcType=VARCHAR},
+      jurisdiction_unit_name = #{record.jurisdictionUnitName,jdbcType=VARCHAR},
+      economic_ownership_code = #{record.economicOwnershipCode,jdbcType=INTEGER},
+      supervise_level_code = #{record.superviseLevelCode,jdbcType=INTEGER},
+      full_parttime_manager_name = #{record.fullParttimeManagerName,jdbcType=VARCHAR},
+      full_parttime_manager_phone = #{record.fullParttimeManagerPhone,jdbcType=VARCHAR},
+      full_parttime_manager_card = #{record.fullParttimeManagerCard,jdbcType=VARCHAR},
+      super_unit_name = #{record.superUnitName,jdbcType=VARCHAR},
+      staff_count = #{record.staffCount,jdbcType=BIGINT},
+      fixed_assets = #{record.fixedAssets,jdbcType=BIGINT},
+      maintenance_company = #{record.maintenanceCompany,jdbcType=VARCHAR},
+      construction_company = #{record.constructionCompany,jdbcType=VARCHAR},
+      sale_company = #{record.saleCompany,jdbcType=VARCHAR},
+      industry_code = #{record.industryCode,jdbcType=INTEGER},
+      supervise_type_code = #{record.superviseTypeCode,jdbcType=INTEGER},
+      deleted = #{record.deleted,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtend">
+    update project_extend
+    <set>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTitle != null">
+        manage_title = #{manageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null">
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonName != null">
+        security_charge_person_name = #{securityChargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonPhone != null">
+        security_charge_person_phone = #{securityChargePersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="securityChargePersonCard != null">
+        security_charge_person_card = #{securityChargePersonCard,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerName != null">
+        security_manager_name = #{securityManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerPhone != null">
+        security_manager_phone = #{securityManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="securityManagerCard != null">
+        security_manager_card = #{securityManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeName != null">
+        legal_representative_name = #{legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativePhone != null">
+        legal_representative_phone = #{legalRepresentativePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCard != null">
+        legal_representative_card = #{legalRepresentativeCard,jdbcType=VARCHAR},
+      </if>
+      <if test="jurisdictionUnitName != null">
+        jurisdiction_unit_name = #{jurisdictionUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="economicOwnershipCode != null">
+        economic_ownership_code = #{economicOwnershipCode,jdbcType=INTEGER},
+      </if>
+      <if test="superviseLevelCode != null">
+        supervise_level_code = #{superviseLevelCode,jdbcType=INTEGER},
+      </if>
+      <if test="fullParttimeManagerName != null">
+        full_parttime_manager_name = #{fullParttimeManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullParttimeManagerPhone != null">
+        full_parttime_manager_phone = #{fullParttimeManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fullParttimeManagerCard != null">
+        full_parttime_manager_card = #{fullParttimeManagerCard,jdbcType=VARCHAR},
+      </if>
+      <if test="superUnitName != null">
+        super_unit_name = #{superUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCount != null">
+        staff_count = #{staffCount,jdbcType=BIGINT},
+      </if>
+      <if test="fixedAssets != null">
+        fixed_assets = #{fixedAssets,jdbcType=BIGINT},
+      </if>
+      <if test="maintenanceCompany != null">
+        maintenance_company = #{maintenanceCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="constructionCompany != null">
+        construction_company = #{constructionCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="saleCompany != null">
+        sale_company = #{saleCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null">
+        industry_code = #{industryCode,jdbcType=INTEGER},
+      </if>
+      <if test="superviseTypeCode != null">
+        supervise_type_code = #{superviseTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectExtend">
+    update project_extend
+    set project_id = #{projectId,jdbcType=VARCHAR},
+      manage_title = #{manageTitle,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      security_charge_person_name = #{securityChargePersonName,jdbcType=VARCHAR},
+      security_charge_person_phone = #{securityChargePersonPhone,jdbcType=VARCHAR},
+      security_charge_person_card = #{securityChargePersonCard,jdbcType=VARCHAR},
+      security_manager_name = #{securityManagerName,jdbcType=VARCHAR},
+      security_manager_phone = #{securityManagerPhone,jdbcType=VARCHAR},
+      security_manager_card = #{securityManagerCard,jdbcType=VARCHAR},
+      legal_representative_name = #{legalRepresentativeName,jdbcType=VARCHAR},
+      legal_representative_phone = #{legalRepresentativePhone,jdbcType=VARCHAR},
+      legal_representative_card = #{legalRepresentativeCard,jdbcType=VARCHAR},
+      jurisdiction_unit_name = #{jurisdictionUnitName,jdbcType=VARCHAR},
+      economic_ownership_code = #{economicOwnershipCode,jdbcType=INTEGER},
+      supervise_level_code = #{superviseLevelCode,jdbcType=INTEGER},
+      full_parttime_manager_name = #{fullParttimeManagerName,jdbcType=VARCHAR},
+      full_parttime_manager_phone = #{fullParttimeManagerPhone,jdbcType=VARCHAR},
+      full_parttime_manager_card = #{fullParttimeManagerCard,jdbcType=VARCHAR},
+      super_unit_name = #{superUnitName,jdbcType=VARCHAR},
+      staff_count = #{staffCount,jdbcType=BIGINT},
+      fixed_assets = #{fixedAssets,jdbcType=BIGINT},
+      maintenance_company = #{maintenanceCompany,jdbcType=VARCHAR},
+      construction_company = #{constructionCompany,jdbcType=VARCHAR},
+      sale_company = #{saleCompany,jdbcType=VARCHAR},
+      industry_code = #{industryCode,jdbcType=INTEGER},
+      supervise_type_code = #{superviseTypeCode,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

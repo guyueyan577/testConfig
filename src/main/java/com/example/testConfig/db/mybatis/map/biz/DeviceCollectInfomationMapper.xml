@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.DeviceCollectInfomationMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="sensor_tag_code" jdbcType="INTEGER" property="sensorTagCode" />
+    <result column="user_sensor_tag_code" jdbcType="INTEGER" property="userSensorTagCode" />
+    <result column="max_range" jdbcType="INTEGER" property="maxRange" />
+    <result column="min_range" jdbcType="INTEGER" property="minRange" />
+    <result column="max_alarm" jdbcType="INTEGER" property="maxAlarm" />
+    <result column="min_alarm" jdbcType="INTEGER" property="minAlarm" />
+    <result column="multiple" jdbcType="INTEGER" property="multiple" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="error_range" jdbcType="INTEGER" property="errorRange" />
+    <result column="alarm_value" jdbcType="INTEGER" property="alarmValue" />
+    <result column="collect_period" jdbcType="INTEGER" property="collectPeriod" />
+    <result column="device_state_code" jdbcType="INTEGER" property="deviceStateCode" />
+    <result column="device_state_group_code" jdbcType="INTEGER" property="deviceStateGroupCode" />
+    <result column="collect_time" jdbcType="BIGINT" property="collectTime" />
+    <result column="collect_value" jdbcType="DOUBLE" property="collectValue" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="state_duration" jdbcType="INTEGER" property="stateDuration" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, device_id, sensor_tag_code, user_sensor_tag_code, max_range, min_range, max_alarm, 
+    min_alarm, multiple, unit, error_range, alarm_value, collect_period, device_state_code, 
+    device_state_group_code, collect_time, collect_value, create_time, state_duration
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_collect_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from device_collect_infomation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from device_collect_infomation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomationExample">
+    delete from device_collect_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomation">
+    insert into device_collect_infomation (id, device_id, sensor_tag_code, 
+      user_sensor_tag_code, max_range, min_range, 
+      max_alarm, min_alarm, multiple, 
+      unit, error_range, alarm_value, 
+      collect_period, device_state_code, device_state_group_code, 
+      collect_time, collect_value, create_time, 
+      state_duration)
+    values (#{id,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{sensorTagCode,jdbcType=INTEGER}, 
+      #{userSensorTagCode,jdbcType=INTEGER}, #{maxRange,jdbcType=INTEGER}, #{minRange,jdbcType=INTEGER}, 
+      #{maxAlarm,jdbcType=INTEGER}, #{minAlarm,jdbcType=INTEGER}, #{multiple,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{errorRange,jdbcType=INTEGER}, #{alarmValue,jdbcType=INTEGER}, 
+      #{collectPeriod,jdbcType=INTEGER}, #{deviceStateCode,jdbcType=INTEGER}, #{deviceStateGroupCode,jdbcType=INTEGER}, 
+      #{collectTime,jdbcType=BIGINT}, #{collectValue,jdbcType=DOUBLE}, #{createTime,jdbcType=BIGINT}, 
+      #{stateDuration,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomation">
+    insert into device_collect_infomation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="sensorTagCode != null">
+        sensor_tag_code,
+      </if>
+      <if test="userSensorTagCode != null">
+        user_sensor_tag_code,
+      </if>
+      <if test="maxRange != null">
+        max_range,
+      </if>
+      <if test="minRange != null">
+        min_range,
+      </if>
+      <if test="maxAlarm != null">
+        max_alarm,
+      </if>
+      <if test="minAlarm != null">
+        min_alarm,
+      </if>
+      <if test="multiple != null">
+        multiple,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="errorRange != null">
+        error_range,
+      </if>
+      <if test="alarmValue != null">
+        alarm_value,
+      </if>
+      <if test="collectPeriod != null">
+        collect_period,
+      </if>
+      <if test="deviceStateCode != null">
+        device_state_code,
+      </if>
+      <if test="deviceStateGroupCode != null">
+        device_state_group_code,
+      </if>
+      <if test="collectTime != null">
+        collect_time,
+      </if>
+      <if test="collectValue != null">
+        collect_value,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="stateDuration != null">
+        state_duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorTagCode != null">
+        #{sensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="userSensorTagCode != null">
+        #{userSensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="maxRange != null">
+        #{maxRange,jdbcType=INTEGER},
+      </if>
+      <if test="minRange != null">
+        #{minRange,jdbcType=INTEGER},
+      </if>
+      <if test="maxAlarm != null">
+        #{maxAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="minAlarm != null">
+        #{minAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="errorRange != null">
+        #{errorRange,jdbcType=INTEGER},
+      </if>
+      <if test="alarmValue != null">
+        #{alarmValue,jdbcType=INTEGER},
+      </if>
+      <if test="collectPeriod != null">
+        #{collectPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="deviceStateCode != null">
+        #{deviceStateCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceStateGroupCode != null">
+        #{deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null">
+        #{collectTime,jdbcType=BIGINT},
+      </if>
+      <if test="collectValue != null">
+        #{collectValue,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="stateDuration != null">
+        #{stateDuration,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomationExample" resultType="java.lang.Long">
+    select count(*) from device_collect_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update device_collect_infomation
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceId != null">
+        device_id = #{record.deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sensorTagCode != null">
+        sensor_tag_code = #{record.sensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.userSensorTagCode != null">
+        user_sensor_tag_code = #{record.userSensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxRange != null">
+        max_range = #{record.maxRange,jdbcType=INTEGER},
+      </if>
+      <if test="record.minRange != null">
+        min_range = #{record.minRange,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxAlarm != null">
+        max_alarm = #{record.maxAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="record.minAlarm != null">
+        min_alarm = #{record.minAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="record.multiple != null">
+        multiple = #{record.multiple,jdbcType=INTEGER},
+      </if>
+      <if test="record.unit != null">
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.errorRange != null">
+        error_range = #{record.errorRange,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmValue != null">
+        alarm_value = #{record.alarmValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectPeriod != null">
+        collect_period = #{record.collectPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceStateCode != null">
+        device_state_code = #{record.deviceStateCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceStateGroupCode != null">
+        device_state_group_code = #{record.deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectTime != null">
+        collect_time = #{record.collectTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.collectValue != null">
+        collect_value = #{record.collectValue,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.stateDuration != null">
+        state_duration = #{record.stateDuration,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update device_collect_infomation
+    set id = #{record.id,jdbcType=VARCHAR},
+      device_id = #{record.deviceId,jdbcType=VARCHAR},
+      sensor_tag_code = #{record.sensorTagCode,jdbcType=INTEGER},
+      user_sensor_tag_code = #{record.userSensorTagCode,jdbcType=INTEGER},
+      max_range = #{record.maxRange,jdbcType=INTEGER},
+      min_range = #{record.minRange,jdbcType=INTEGER},
+      max_alarm = #{record.maxAlarm,jdbcType=INTEGER},
+      min_alarm = #{record.minAlarm,jdbcType=INTEGER},
+      multiple = #{record.multiple,jdbcType=INTEGER},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      error_range = #{record.errorRange,jdbcType=INTEGER},
+      alarm_value = #{record.alarmValue,jdbcType=INTEGER},
+      collect_period = #{record.collectPeriod,jdbcType=INTEGER},
+      device_state_code = #{record.deviceStateCode,jdbcType=INTEGER},
+      device_state_group_code = #{record.deviceStateGroupCode,jdbcType=INTEGER},
+      collect_time = #{record.collectTime,jdbcType=BIGINT},
+      collect_value = #{record.collectValue,jdbcType=DOUBLE},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      state_duration = #{record.stateDuration,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomation">
+    update device_collect_infomation
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorTagCode != null">
+        sensor_tag_code = #{sensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="userSensorTagCode != null">
+        user_sensor_tag_code = #{userSensorTagCode,jdbcType=INTEGER},
+      </if>
+      <if test="maxRange != null">
+        max_range = #{maxRange,jdbcType=INTEGER},
+      </if>
+      <if test="minRange != null">
+        min_range = #{minRange,jdbcType=INTEGER},
+      </if>
+      <if test="maxAlarm != null">
+        max_alarm = #{maxAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="minAlarm != null">
+        min_alarm = #{minAlarm,jdbcType=INTEGER},
+      </if>
+      <if test="multiple != null">
+        multiple = #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="errorRange != null">
+        error_range = #{errorRange,jdbcType=INTEGER},
+      </if>
+      <if test="alarmValue != null">
+        alarm_value = #{alarmValue,jdbcType=INTEGER},
+      </if>
+      <if test="collectPeriod != null">
+        collect_period = #{collectPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="deviceStateCode != null">
+        device_state_code = #{deviceStateCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceStateGroupCode != null">
+        device_state_group_code = #{deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null">
+        collect_time = #{collectTime,jdbcType=BIGINT},
+      </if>
+      <if test="collectValue != null">
+        collect_value = #{collectValue,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="stateDuration != null">
+        state_duration = #{stateDuration,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceCollectInfomation">
+    update device_collect_infomation
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+      sensor_tag_code = #{sensorTagCode,jdbcType=INTEGER},
+      user_sensor_tag_code = #{userSensorTagCode,jdbcType=INTEGER},
+      max_range = #{maxRange,jdbcType=INTEGER},
+      min_range = #{minRange,jdbcType=INTEGER},
+      max_alarm = #{maxAlarm,jdbcType=INTEGER},
+      min_alarm = #{minAlarm,jdbcType=INTEGER},
+      multiple = #{multiple,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      error_range = #{errorRange,jdbcType=INTEGER},
+      alarm_value = #{alarmValue,jdbcType=INTEGER},
+      collect_period = #{collectPeriod,jdbcType=INTEGER},
+      device_state_code = #{deviceStateCode,jdbcType=INTEGER},
+      device_state_group_code = #{deviceStateGroupCode,jdbcType=INTEGER},
+      collect_time = #{collectTime,jdbcType=BIGINT},
+      collect_value = #{collectValue,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=BIGINT},
+      state_duration = #{stateDuration,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.PublicWaterMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.PublicWater">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="gcj02_latitude" jdbcType="DOUBLE" property="gcj02Latitude" />
+    <result column="gcj02_longitude" jdbcType="DOUBLE" property="gcj02Longitude" />
+    <result column="wgs84_latitude" jdbcType="DOUBLE" property="wgs84Latitude" />
+    <result column="wgs84_longitude" jdbcType="DOUBLE" property="wgs84Longitude" />
+    <result column="distance" jdbcType="DOUBLE" property="distance" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, address, gcj02_latitude, gcj02_longitude, wgs84_latitude, wgs84_longitude, 
+    distance, state, project_id
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWaterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public_water
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public_water
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public_water
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWaterExample">
+    delete from public_water
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWater">
+    insert into public_water (id, name, address, 
+      gcj02_latitude, gcj02_longitude, wgs84_latitude, 
+      wgs84_longitude, distance, state, 
+      project_id)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{gcj02Latitude,jdbcType=DOUBLE}, #{gcj02Longitude,jdbcType=DOUBLE}, #{wgs84Latitude,jdbcType=DOUBLE}, 
+      #{wgs84Longitude,jdbcType=DOUBLE}, #{distance,jdbcType=DOUBLE}, #{state,jdbcType=VARCHAR}, 
+      #{projectId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWater">
+    insert into public_water
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude,
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude,
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude,
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude,
+      </if>
+      <if test="distance != null">
+        distance,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="gcj02Latitude != null">
+        #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="distance != null">
+        #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWaterExample" resultType="java.lang.Long">
+    select count(*) from public_water
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update public_water
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcj02Latitude != null">
+        gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.gcj02Longitude != null">
+        gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Latitude != null">
+        wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Longitude != null">
+        wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.distance != null">
+        distance = #{record.distance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update public_water
+    set id = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      distance = #{record.distance,jdbcType=DOUBLE},
+      state = #{record.state,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWater">
+    update public_water
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="distance != null">
+        distance = #{distance,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.PublicWater">
+    update public_water
+    set name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      distance = #{distance,jdbcType=DOUBLE},
+      state = #{state,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 下面是自定义添加的内容 -->
+  <select id="selectListByLocationAndMaxDistance" parameterType="map" resultMap="BaseResultMap">
+    select  
+    id, name, address, gcj02_latitude, gcj02_longitude, wgs84_latitude, wgs84_longitude, 
+    state, project_id, 
+    st_distance(point(#{lat,jdbcType=DOUBLE},#{lng,jdbcType=DOUBLE}), point(gcj02_latitude,gcj02_longitude))*111195 as distance
+    from public_water  
+    where 
+    st_distance(point(#{lat,jdbcType=DOUBLE},#{lng,jdbcType=DOUBLE}), point(gcj02_latitude,gcj02_longitude))*111195 &lt; #{maxDistance,jdbcType=DOUBLE}
+  </select>
+  
+  <select id="mySelectListByLocationAndMaxDistance" parameterType="map" resultMap="BaseResultMap">
+    select id, name, address, gcj02_latitude, gcj02_longitude, wgs84_latitude, wgs84_longitude, 
+    state, project_id, 
+    SQRT(POWER((#{lat,jdbcType=DOUBLE}-gcj02_latitude),2)+POWER((#{lng,jdbcType=DOUBLE}-gcj02_longitude),2))*111195 as distance
+    from public_water  
+    where 
+    SQRT(POWER((#{lat,jdbcType=DOUBLE}-gcj02_latitude),2)+POWER((#{lng,jdbcType=DOUBLE}-gcj02_longitude),2))*111195 &lt; #{maxDistance,jdbcType=DOUBLE}
+  </select>
+</mapper>

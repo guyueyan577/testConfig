@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.testConfig.configModel.RabbitMqModel;
+import com.example.testConfig.configModel.RabbitMqConfigModel;
 import com.example.testConfig.utils.HttpRequest;
 
 /**
@@ -28,7 +28,7 @@ public class RabbitMqConfig {
 	@Value("${config.url}")
 	String configUrl;
 	
-	RabbitMqModel rabbitMqModel = null;
+	RabbitMqConfigModel rabbitMqModel = null;
 	
 	private void getRabbitMqModel() {
     	//只需要读取一次配置信息
@@ -36,7 +36,7 @@ public class RabbitMqConfig {
 	        String strRabbitMqConfig = HttpRequest.sendGet(configUrl + "/rabbitmq", "");
 	        
 	        if (StringUtils.isNotBlank(strRabbitMqConfig)){		        	
-	        	rabbitMqModel = JSONObject.parseObject(strRabbitMqConfig,RabbitMqModel.class);
+	        	rabbitMqModel = JSONObject.parseObject(strRabbitMqConfig,RabbitMqConfigModel.class);
 	        }
     	}
 	}

@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.DeviceBaseMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.DeviceBase">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="device_flag" jdbcType="INTEGER" property="deviceFlag" />
+    <result column="controller_addr" jdbcType="INTEGER" property="controllerAddr" />
+    <result column="channel_id" jdbcType="INTEGER" property="channelId" />
+    <result column="device_number" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="device_type_code" jdbcType="INTEGER" property="deviceTypeCode" />
+    <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName" />
+    <result column="user_device_type_code" jdbcType="INTEGER" property="userDeviceTypeCode" />
+    <result column="user_device_type_name" jdbcType="VARCHAR" property="userDeviceTypeName" />
+    <result column="device_vendor_code" jdbcType="INTEGER" property="deviceVendorCode" />
+    <result column="device_vendor_name" jdbcType="VARCHAR" property="deviceVendorName" />
+    <result column="device_produce_time" jdbcType="BIGINT" property="deviceProduceTime" />
+    <result column="device_commission_time" jdbcType="BIGINT" property="deviceCommissionTime" />
+    <result column="device_use_end_time" jdbcType="BIGINT" property="deviceUseEndTime" />
+    <result column="device_install_location" jdbcType="VARCHAR" property="deviceInstallLocation" />
+    <result column="device_unit_type" jdbcType="VARCHAR" property="deviceUnitType" />
+    <result column="device_parent_id" jdbcType="VARCHAR" property="deviceParentId" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="first_level_area_id" jdbcType="VARCHAR" property="firstLevelAreaId" />
+    <result column="second_level_area_id" jdbcType="VARCHAR" property="secondLevelAreaId" />
+    <result column="third_level_area_id" jdbcType="VARCHAR" property="thirdLevelAreaId" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="place_id" jdbcType="VARCHAR" property="placeId" />
+    <result column="device_system_code" jdbcType="INTEGER" property="deviceSystemCode" />
+    <result column="device_system_name" jdbcType="VARCHAR" property="deviceSystemName" />
+    <result column="device_sub_system_code" jdbcType="INTEGER" property="deviceSubSystemCode" />
+    <result column="device_sub_system_name" jdbcType="VARCHAR" property="deviceSubSystemName" />
+    <result column="adapter_id" jdbcType="VARCHAR" property="adapterId" />
+    <result column="adapter_name" jdbcType="VARCHAR" property="adapterName" />
+    <result column="layer_image_x" jdbcType="DOUBLE" property="layerImageX" />
+    <result column="layer_image_y" jdbcType="DOUBLE" property="layerImageY" />
+    <result column="device_state_group_code" jdbcType="INTEGER" property="deviceStateGroupCode" />
+    <result column="gcj02_latitude" jdbcType="DOUBLE" property="gcj02Latitude" />
+    <result column="gcj02_longitude" jdbcType="DOUBLE" property="gcj02Longitude" />
+    <result column="wgs84_latitude" jdbcType="DOUBLE" property="wgs84Latitude" />
+    <result column="wgs84_longitude" jdbcType="DOUBLE" property="wgs84Longitude" />
+    <result column="important" jdbcType="BIT" property="important" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="personal_device" jdbcType="BIT" property="personalDevice" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, device_flag, controller_addr, channel_id, device_number, device_type_code, device_type_name, 
+    user_device_type_code, user_device_type_name, device_vendor_code, device_vendor_name, 
+    device_produce_time, device_commission_time, device_use_end_time, device_install_location, 
+    device_unit_type, device_parent_id, project_id, first_level_area_id, second_level_area_id, 
+    third_level_area_id, area_id, place_id, device_system_code, device_system_name, device_sub_system_code, 
+    device_sub_system_name, adapter_id, adapter_name, layer_image_x, layer_image_y, device_state_group_code, 
+    gcj02_latitude, gcj02_longitude, wgs84_latitude, wgs84_longitude, important, deleted, 
+    create_time, update_time, personal_device
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from device_base
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from device_base
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBaseExample">
+    delete from device_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBase">
+    insert into device_base (id, device_flag, controller_addr, 
+      channel_id, device_number, device_type_code, 
+      device_type_name, user_device_type_code, user_device_type_name, 
+      device_vendor_code, device_vendor_name, device_produce_time, 
+      device_commission_time, device_use_end_time, device_install_location, 
+      device_unit_type, device_parent_id, project_id, 
+      first_level_area_id, second_level_area_id, third_level_area_id, 
+      area_id, place_id, device_system_code, 
+      device_system_name, device_sub_system_code, 
+      device_sub_system_name, adapter_id, adapter_name, 
+      layer_image_x, layer_image_y, device_state_group_code, 
+      gcj02_latitude, gcj02_longitude, wgs84_latitude, 
+      wgs84_longitude, important, deleted, 
+      create_time, update_time, personal_device
+      )
+    values (#{id,jdbcType=VARCHAR}, #{deviceFlag,jdbcType=INTEGER}, #{controllerAddr,jdbcType=INTEGER}, 
+      #{channelId,jdbcType=INTEGER}, #{deviceNumber,jdbcType=VARCHAR}, #{deviceTypeCode,jdbcType=INTEGER}, 
+      #{deviceTypeName,jdbcType=VARCHAR}, #{userDeviceTypeCode,jdbcType=INTEGER}, #{userDeviceTypeName,jdbcType=VARCHAR}, 
+      #{deviceVendorCode,jdbcType=INTEGER}, #{deviceVendorName,jdbcType=VARCHAR}, #{deviceProduceTime,jdbcType=BIGINT}, 
+      #{deviceCommissionTime,jdbcType=BIGINT}, #{deviceUseEndTime,jdbcType=BIGINT}, #{deviceInstallLocation,jdbcType=VARCHAR}, 
+      #{deviceUnitType,jdbcType=VARCHAR}, #{deviceParentId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{firstLevelAreaId,jdbcType=VARCHAR}, #{secondLevelAreaId,jdbcType=VARCHAR}, #{thirdLevelAreaId,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{placeId,jdbcType=VARCHAR}, #{deviceSystemCode,jdbcType=INTEGER}, 
+      #{deviceSystemName,jdbcType=VARCHAR}, #{deviceSubSystemCode,jdbcType=INTEGER}, 
+      #{deviceSubSystemName,jdbcType=VARCHAR}, #{adapterId,jdbcType=VARCHAR}, #{adapterName,jdbcType=VARCHAR}, 
+      #{layerImageX,jdbcType=DOUBLE}, #{layerImageY,jdbcType=DOUBLE}, #{deviceStateGroupCode,jdbcType=INTEGER}, 
+      #{gcj02Latitude,jdbcType=DOUBLE}, #{gcj02Longitude,jdbcType=DOUBLE}, #{wgs84Latitude,jdbcType=DOUBLE}, 
+      #{wgs84Longitude,jdbcType=DOUBLE}, #{important,jdbcType=BIT}, #{deleted,jdbcType=BIT}, 
+      #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{personalDevice,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBase">
+    insert into device_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deviceFlag != null">
+        device_flag,
+      </if>
+      <if test="controllerAddr != null">
+        controller_addr,
+      </if>
+      <if test="channelId != null">
+        channel_id,
+      </if>
+      <if test="deviceNumber != null">
+        device_number,
+      </if>
+      <if test="deviceTypeCode != null">
+        device_type_code,
+      </if>
+      <if test="deviceTypeName != null">
+        device_type_name,
+      </if>
+      <if test="userDeviceTypeCode != null">
+        user_device_type_code,
+      </if>
+      <if test="userDeviceTypeName != null">
+        user_device_type_name,
+      </if>
+      <if test="deviceVendorCode != null">
+        device_vendor_code,
+      </if>
+      <if test="deviceVendorName != null">
+        device_vendor_name,
+      </if>
+      <if test="deviceProduceTime != null">
+        device_produce_time,
+      </if>
+      <if test="deviceCommissionTime != null">
+        device_commission_time,
+      </if>
+      <if test="deviceUseEndTime != null">
+        device_use_end_time,
+      </if>
+      <if test="deviceInstallLocation != null">
+        device_install_location,
+      </if>
+      <if test="deviceUnitType != null">
+        device_unit_type,
+      </if>
+      <if test="deviceParentId != null">
+        device_parent_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="firstLevelAreaId != null">
+        first_level_area_id,
+      </if>
+      <if test="secondLevelAreaId != null">
+        second_level_area_id,
+      </if>
+      <if test="thirdLevelAreaId != null">
+        third_level_area_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="placeId != null">
+        place_id,
+      </if>
+      <if test="deviceSystemCode != null">
+        device_system_code,
+      </if>
+      <if test="deviceSystemName != null">
+        device_system_name,
+      </if>
+      <if test="deviceSubSystemCode != null">
+        device_sub_system_code,
+      </if>
+      <if test="deviceSubSystemName != null">
+        device_sub_system_name,
+      </if>
+      <if test="adapterId != null">
+        adapter_id,
+      </if>
+      <if test="adapterName != null">
+        adapter_name,
+      </if>
+      <if test="layerImageX != null">
+        layer_image_x,
+      </if>
+      <if test="layerImageY != null">
+        layer_image_y,
+      </if>
+      <if test="deviceStateGroupCode != null">
+        device_state_group_code,
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude,
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude,
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude,
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude,
+      </if>
+      <if test="important != null">
+        important,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="personalDevice != null">
+        personal_device,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceFlag != null">
+        #{deviceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="controllerAddr != null">
+        #{controllerAddr,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null">
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNumber != null">
+        #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeCode != null">
+        #{deviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeName != null">
+        #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userDeviceTypeCode != null">
+        #{userDeviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="userDeviceTypeName != null">
+        #{userDeviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceVendorCode != null">
+        #{deviceVendorCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceVendorName != null">
+        #{deviceVendorName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceProduceTime != null">
+        #{deviceProduceTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceCommissionTime != null">
+        #{deviceCommissionTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceUseEndTime != null">
+        #{deviceUseEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceInstallLocation != null">
+        #{deviceInstallLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceUnitType != null">
+        #{deviceUnitType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceParentId != null">
+        #{deviceParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelAreaId != null">
+        #{firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelAreaId != null">
+        #{secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLevelAreaId != null">
+        #{thirdLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="placeId != null">
+        #{placeId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSystemCode != null">
+        #{deviceSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSystemName != null">
+        #{deviceSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSubSystemCode != null">
+        #{deviceSubSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSubSystemName != null">
+        #{deviceSubSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="adapterId != null">
+        #{adapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="adapterName != null">
+        #{adapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="layerImageX != null">
+        #{layerImageX,jdbcType=DOUBLE},
+      </if>
+      <if test="layerImageY != null">
+        #{layerImageY,jdbcType=DOUBLE},
+      </if>
+      <if test="deviceStateGroupCode != null">
+        #{deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="gcj02Latitude != null">
+        #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="important != null">
+        #{important,jdbcType=BIT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="personalDevice != null">
+        #{personalDevice,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBaseExample" resultType="java.lang.Long">
+    select count(*) from device_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update device_base
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceFlag != null">
+        device_flag = #{record.deviceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.controllerAddr != null">
+        controller_addr = #{record.controllerAddr,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelId != null">
+        channel_id = #{record.channelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceNumber != null">
+        device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceTypeCode != null">
+        device_type_code = #{record.deviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceTypeName != null">
+        device_type_name = #{record.deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userDeviceTypeCode != null">
+        user_device_type_code = #{record.userDeviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.userDeviceTypeName != null">
+        user_device_type_name = #{record.userDeviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceVendorCode != null">
+        device_vendor_code = #{record.deviceVendorCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceVendorName != null">
+        device_vendor_name = #{record.deviceVendorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceProduceTime != null">
+        device_produce_time = #{record.deviceProduceTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceCommissionTime != null">
+        device_commission_time = #{record.deviceCommissionTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceUseEndTime != null">
+        device_use_end_time = #{record.deviceUseEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceInstallLocation != null">
+        device_install_location = #{record.deviceInstallLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceUnitType != null">
+        device_unit_type = #{record.deviceUnitType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceParentId != null">
+        device_parent_id = #{record.deviceParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null">
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstLevelAreaId != null">
+        first_level_area_id = #{record.firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondLevelAreaId != null">
+        second_level_area_id = #{record.secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thirdLevelAreaId != null">
+        third_level_area_id = #{record.thirdLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeId != null">
+        place_id = #{record.placeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceSystemCode != null">
+        device_system_code = #{record.deviceSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceSystemName != null">
+        device_system_name = #{record.deviceSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceSubSystemCode != null">
+        device_sub_system_code = #{record.deviceSubSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceSubSystemName != null">
+        device_sub_system_name = #{record.deviceSubSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adapterId != null">
+        adapter_id = #{record.adapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adapterName != null">
+        adapter_name = #{record.adapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.layerImageX != null">
+        layer_image_x = #{record.layerImageX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.layerImageY != null">
+        layer_image_y = #{record.layerImageY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.deviceStateGroupCode != null">
+        device_state_group_code = #{record.deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.gcj02Latitude != null">
+        gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.gcj02Longitude != null">
+        gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Latitude != null">
+        wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Longitude != null">
+        wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.important != null">
+        important = #{record.important,jdbcType=BIT},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.personalDevice != null">
+        personal_device = #{record.personalDevice,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update device_base
+    set id = #{record.id,jdbcType=VARCHAR},
+      device_flag = #{record.deviceFlag,jdbcType=INTEGER},
+      controller_addr = #{record.controllerAddr,jdbcType=INTEGER},
+      channel_id = #{record.channelId,jdbcType=INTEGER},
+      device_number = #{record.deviceNumber,jdbcType=VARCHAR},
+      device_type_code = #{record.deviceTypeCode,jdbcType=INTEGER},
+      device_type_name = #{record.deviceTypeName,jdbcType=VARCHAR},
+      user_device_type_code = #{record.userDeviceTypeCode,jdbcType=INTEGER},
+      user_device_type_name = #{record.userDeviceTypeName,jdbcType=VARCHAR},
+      device_vendor_code = #{record.deviceVendorCode,jdbcType=INTEGER},
+      device_vendor_name = #{record.deviceVendorName,jdbcType=VARCHAR},
+      device_produce_time = #{record.deviceProduceTime,jdbcType=BIGINT},
+      device_commission_time = #{record.deviceCommissionTime,jdbcType=BIGINT},
+      device_use_end_time = #{record.deviceUseEndTime,jdbcType=BIGINT},
+      device_install_location = #{record.deviceInstallLocation,jdbcType=VARCHAR},
+      device_unit_type = #{record.deviceUnitType,jdbcType=VARCHAR},
+      device_parent_id = #{record.deviceParentId,jdbcType=VARCHAR},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      first_level_area_id = #{record.firstLevelAreaId,jdbcType=VARCHAR},
+      second_level_area_id = #{record.secondLevelAreaId,jdbcType=VARCHAR},
+      third_level_area_id = #{record.thirdLevelAreaId,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=VARCHAR},
+      place_id = #{record.placeId,jdbcType=VARCHAR},
+      device_system_code = #{record.deviceSystemCode,jdbcType=INTEGER},
+      device_system_name = #{record.deviceSystemName,jdbcType=VARCHAR},
+      device_sub_system_code = #{record.deviceSubSystemCode,jdbcType=INTEGER},
+      device_sub_system_name = #{record.deviceSubSystemName,jdbcType=VARCHAR},
+      adapter_id = #{record.adapterId,jdbcType=VARCHAR},
+      adapter_name = #{record.adapterName,jdbcType=VARCHAR},
+      layer_image_x = #{record.layerImageX,jdbcType=DOUBLE},
+      layer_image_y = #{record.layerImageY,jdbcType=DOUBLE},
+      device_state_group_code = #{record.deviceStateGroupCode,jdbcType=INTEGER},
+      gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      important = #{record.important,jdbcType=BIT},
+      deleted = #{record.deleted,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      personal_device = #{record.personalDevice,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBase">
+    update device_base
+    <set>
+      <if test="deviceFlag != null">
+        device_flag = #{deviceFlag,jdbcType=INTEGER},
+      </if>
+      <if test="controllerAddr != null">
+        controller_addr = #{controllerAddr,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null">
+        channel_id = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceNumber != null">
+        device_number = #{deviceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeCode != null">
+        device_type_code = #{deviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeName != null">
+        device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="userDeviceTypeCode != null">
+        user_device_type_code = #{userDeviceTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="userDeviceTypeName != null">
+        user_device_type_name = #{userDeviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceVendorCode != null">
+        device_vendor_code = #{deviceVendorCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceVendorName != null">
+        device_vendor_name = #{deviceVendorName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceProduceTime != null">
+        device_produce_time = #{deviceProduceTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceCommissionTime != null">
+        device_commission_time = #{deviceCommissionTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceUseEndTime != null">
+        device_use_end_time = #{deviceUseEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="deviceInstallLocation != null">
+        device_install_location = #{deviceInstallLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceUnitType != null">
+        device_unit_type = #{deviceUnitType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceParentId != null">
+        device_parent_id = #{deviceParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelAreaId != null">
+        first_level_area_id = #{firstLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelAreaId != null">
+        second_level_area_id = #{secondLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLevelAreaId != null">
+        third_level_area_id = #{thirdLevelAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="placeId != null">
+        place_id = #{placeId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSystemCode != null">
+        device_system_code = #{deviceSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSystemName != null">
+        device_system_name = #{deviceSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceSubSystemCode != null">
+        device_sub_system_code = #{deviceSubSystemCode,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSubSystemName != null">
+        device_sub_system_name = #{deviceSubSystemName,jdbcType=VARCHAR},
+      </if>
+      <if test="adapterId != null">
+        adapter_id = #{adapterId,jdbcType=VARCHAR},
+      </if>
+      <if test="adapterName != null">
+        adapter_name = #{adapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="layerImageX != null">
+        layer_image_x = #{layerImageX,jdbcType=DOUBLE},
+      </if>
+      <if test="layerImageY != null">
+        layer_image_y = #{layerImageY,jdbcType=DOUBLE},
+      </if>
+      <if test="deviceStateGroupCode != null">
+        device_state_group_code = #{deviceStateGroupCode,jdbcType=INTEGER},
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="important != null">
+        important = #{important,jdbcType=BIT},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="personalDevice != null">
+        personal_device = #{personalDevice,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.DeviceBase">
+    update device_base
+    set device_flag = #{deviceFlag,jdbcType=INTEGER},
+      controller_addr = #{controllerAddr,jdbcType=INTEGER},
+      channel_id = #{channelId,jdbcType=INTEGER},
+      device_number = #{deviceNumber,jdbcType=VARCHAR},
+      device_type_code = #{deviceTypeCode,jdbcType=INTEGER},
+      device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+      user_device_type_code = #{userDeviceTypeCode,jdbcType=INTEGER},
+      user_device_type_name = #{userDeviceTypeName,jdbcType=VARCHAR},
+      device_vendor_code = #{deviceVendorCode,jdbcType=INTEGER},
+      device_vendor_name = #{deviceVendorName,jdbcType=VARCHAR},
+      device_produce_time = #{deviceProduceTime,jdbcType=BIGINT},
+      device_commission_time = #{deviceCommissionTime,jdbcType=BIGINT},
+      device_use_end_time = #{deviceUseEndTime,jdbcType=BIGINT},
+      device_install_location = #{deviceInstallLocation,jdbcType=VARCHAR},
+      device_unit_type = #{deviceUnitType,jdbcType=VARCHAR},
+      device_parent_id = #{deviceParentId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      first_level_area_id = #{firstLevelAreaId,jdbcType=VARCHAR},
+      second_level_area_id = #{secondLevelAreaId,jdbcType=VARCHAR},
+      third_level_area_id = #{thirdLevelAreaId,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      place_id = #{placeId,jdbcType=VARCHAR},
+      device_system_code = #{deviceSystemCode,jdbcType=INTEGER},
+      device_system_name = #{deviceSystemName,jdbcType=VARCHAR},
+      device_sub_system_code = #{deviceSubSystemCode,jdbcType=INTEGER},
+      device_sub_system_name = #{deviceSubSystemName,jdbcType=VARCHAR},
+      adapter_id = #{adapterId,jdbcType=VARCHAR},
+      adapter_name = #{adapterName,jdbcType=VARCHAR},
+      layer_image_x = #{layerImageX,jdbcType=DOUBLE},
+      layer_image_y = #{layerImageY,jdbcType=DOUBLE},
+      device_state_group_code = #{deviceStateGroupCode,jdbcType=INTEGER},
+      gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      important = #{important,jdbcType=BIT},
+      deleted = #{deleted,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      personal_device = #{personalDevice,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

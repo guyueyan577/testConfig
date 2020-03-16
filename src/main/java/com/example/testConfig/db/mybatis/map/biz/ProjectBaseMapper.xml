@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.testConfig.db.mybatis.mapper.biz.ProjectBaseMapper">
+  <resultMap id="BaseResultMap" type="com.example.testConfig.db.mybatis.model.biz.ProjectBase">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="first_level_region_code" jdbcType="VARCHAR" property="firstLevelRegionCode" />
+    <result column="second_level_region_code" jdbcType="VARCHAR" property="secondLevelRegionCode" />
+    <result column="third_level_region_code" jdbcType="VARCHAR" property="thirdLevelRegionCode" />
+    <result column="four_level_region_code" jdbcType="VARCHAR" property="fourLevelRegionCode" />
+    <result column="postal_code" jdbcType="VARCHAR" property="postalCode" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="principal_name" jdbcType="VARCHAR" property="principalName" />
+    <result column="principal_phone_number" jdbcType="VARCHAR" property="principalPhoneNumber" />
+    <result column="duty_phone_number" jdbcType="VARCHAR" property="dutyPhoneNumber" />
+    <result column="gcj02_latitude" jdbcType="DOUBLE" property="gcj02Latitude" />
+    <result column="gcj02_longitude" jdbcType="DOUBLE" property="gcj02Longitude" />
+    <result column="wgs84_latitude" jdbcType="DOUBLE" property="wgs84Latitude" />
+    <result column="wgs84_longitude" jdbcType="DOUBLE" property="wgs84Longitude" />
+    <result column="project_state" jdbcType="INTEGER" property="projectState" />
+    <result column="enable" jdbcType="BIT" property="enable" />
+    <result column="audit_state" jdbcType="INTEGER" property="auditState" />
+    <result column="project_monitor_region" jdbcType="VARCHAR" property="projectMonitorRegion" />
+    <result column="property" jdbcType="INTEGER" property="property" />
+    <result column="phone_notified" jdbcType="BIT" property="phoneNotified" />
+    <result column="message_notified" jdbcType="BIT" property="messageNotified" />
+    <result column="app_notified" jdbcType="BIT" property="appNotified" />
+    <result column="push_switch" jdbcType="BIT" property="pushSwitch" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="logo_url" jdbcType="VARCHAR" property="logoUrl" />
+    <result column="workflow_id" jdbcType="VARCHAR" property="workflowId" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="service_start_time" jdbcType="BIGINT" property="serviceStartTime" />
+    <result column="service_end_time" jdbcType="BIGINT" property="serviceEndTime" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="personal_project" jdbcType="BIT" property="personalProject" />
+    <result column="project_source" jdbcType="INTEGER" property="projectSource" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="MySelect_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and project_base.${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and project_base.${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and project_base.${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and project_base.${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, agent_id, project_name, type, country_code, admin_id, first_level_region_code, 
+    second_level_region_code, third_level_region_code, four_level_region_code, postal_code, 
+    address, principal_name, principal_phone_number, duty_phone_number, gcj02_latitude, 
+    gcj02_longitude, wgs84_latitude, wgs84_longitude, project_state, enable, audit_state, 
+    project_monitor_region, property, phone_notified, message_notified, app_notified, 
+    push_switch, title, logo_url, workflow_id, deleted, service_start_time, service_end_time, 
+    create_time, update_time, personal_project, project_source
+  </sql>
+  <select id="selectByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_base
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from project_base
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBaseExample">
+    delete from project_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBase">
+    insert into project_base (id, agent_id, project_name, 
+      type, country_code, admin_id, 
+      first_level_region_code, second_level_region_code, 
+      third_level_region_code, four_level_region_code, 
+      postal_code, address, principal_name, 
+      principal_phone_number, duty_phone_number, 
+      gcj02_latitude, gcj02_longitude, wgs84_latitude, 
+      wgs84_longitude, project_state, enable, 
+      audit_state, project_monitor_region, property, 
+      phone_notified, message_notified, app_notified, 
+      push_switch, title, logo_url, 
+      workflow_id, deleted, service_start_time, 
+      service_end_time, create_time, update_time, 
+      personal_project, project_source)
+    values (#{id,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{countryCode,jdbcType=VARCHAR}, #{adminId,jdbcType=VARCHAR}, 
+      #{firstLevelRegionCode,jdbcType=VARCHAR}, #{secondLevelRegionCode,jdbcType=VARCHAR}, 
+      #{thirdLevelRegionCode,jdbcType=VARCHAR}, #{fourLevelRegionCode,jdbcType=VARCHAR}, 
+      #{postalCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{principalName,jdbcType=VARCHAR}, 
+      #{principalPhoneNumber,jdbcType=VARCHAR}, #{dutyPhoneNumber,jdbcType=VARCHAR}, 
+      #{gcj02Latitude,jdbcType=DOUBLE}, #{gcj02Longitude,jdbcType=DOUBLE}, #{wgs84Latitude,jdbcType=DOUBLE}, 
+      #{wgs84Longitude,jdbcType=DOUBLE}, #{projectState,jdbcType=INTEGER}, #{enable,jdbcType=BIT}, 
+      #{auditState,jdbcType=INTEGER}, #{projectMonitorRegion,jdbcType=VARCHAR}, #{property,jdbcType=INTEGER}, 
+      #{phoneNotified,jdbcType=BIT}, #{messageNotified,jdbcType=BIT}, #{appNotified,jdbcType=BIT}, 
+      #{pushSwitch,jdbcType=BIT}, #{title,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{workflowId,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{serviceStartTime,jdbcType=BIGINT}, 
+      #{serviceEndTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{personalProject,jdbcType=BIT}, #{projectSource,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBase">
+    insert into project_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="countryCode != null">
+        country_code,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="firstLevelRegionCode != null">
+        first_level_region_code,
+      </if>
+      <if test="secondLevelRegionCode != null">
+        second_level_region_code,
+      </if>
+      <if test="thirdLevelRegionCode != null">
+        third_level_region_code,
+      </if>
+      <if test="fourLevelRegionCode != null">
+        four_level_region_code,
+      </if>
+      <if test="postalCode != null">
+        postal_code,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="principalName != null">
+        principal_name,
+      </if>
+      <if test="principalPhoneNumber != null">
+        principal_phone_number,
+      </if>
+      <if test="dutyPhoneNumber != null">
+        duty_phone_number,
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude,
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude,
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude,
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude,
+      </if>
+      <if test="projectState != null">
+        project_state,
+      </if>
+      <if test="enable != null">
+        enable,
+      </if>
+      <if test="auditState != null">
+        audit_state,
+      </if>
+      <if test="projectMonitorRegion != null">
+        project_monitor_region,
+      </if>
+      <if test="property != null">
+        property,
+      </if>
+      <if test="phoneNotified != null">
+        phone_notified,
+      </if>
+      <if test="messageNotified != null">
+        message_notified,
+      </if>
+      <if test="appNotified != null">
+        app_notified,
+      </if>
+      <if test="pushSwitch != null">
+        push_switch,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="logoUrl != null">
+        logo_url,
+      </if>
+      <if test="workflowId != null">
+        workflow_id,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="serviceStartTime != null">
+        service_start_time,
+      </if>
+      <if test="serviceEndTime != null">
+        service_end_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="personalProject != null">
+        personal_project,
+      </if>
+      <if test="projectSource != null">
+        project_source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="countryCode != null">
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelRegionCode != null">
+        #{firstLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelRegionCode != null">
+        #{secondLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLevelRegionCode != null">
+        #{thirdLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fourLevelRegionCode != null">
+        #{fourLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null">
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhoneNumber != null">
+        #{principalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyPhoneNumber != null">
+        #{dutyPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gcj02Latitude != null">
+        #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="projectState != null">
+        #{projectState,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=BIT},
+      </if>
+      <if test="auditState != null">
+        #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="projectMonitorRegion != null">
+        #{projectMonitorRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        #{property,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNotified != null">
+        #{phoneNotified,jdbcType=BIT},
+      </if>
+      <if test="messageNotified != null">
+        #{messageNotified,jdbcType=BIT},
+      </if>
+      <if test="appNotified != null">
+        #{appNotified,jdbcType=BIT},
+      </if>
+      <if test="pushSwitch != null">
+        #{pushSwitch,jdbcType=BIT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="workflowId != null">
+        #{workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="serviceStartTime != null">
+        #{serviceStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="serviceEndTime != null">
+        #{serviceEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="personalProject != null">
+        #{personalProject,jdbcType=BIT},
+      </if>
+      <if test="projectSource != null">
+        #{projectSource,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBaseExample" resultType="java.lang.Long">
+    select count(*) from project_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update project_base
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentId != null">
+        agent_id = #{record.agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null">
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.countryCode != null">
+        country_code = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstLevelRegionCode != null">
+        first_level_region_code = #{record.firstLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secondLevelRegionCode != null">
+        second_level_region_code = #{record.secondLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thirdLevelRegionCode != null">
+        third_level_region_code = #{record.thirdLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fourLevelRegionCode != null">
+        four_level_region_code = #{record.fourLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalCode != null">
+        postal_code = #{record.postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.principalName != null">
+        principal_name = #{record.principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.principalPhoneNumber != null">
+        principal_phone_number = #{record.principalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dutyPhoneNumber != null">
+        duty_phone_number = #{record.dutyPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gcj02Latitude != null">
+        gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.gcj02Longitude != null">
+        gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Latitude != null">
+        wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wgs84Longitude != null">
+        wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.projectState != null">
+        project_state = #{record.projectState,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable != null">
+        enable = #{record.enable,jdbcType=BIT},
+      </if>
+      <if test="record.auditState != null">
+        audit_state = #{record.auditState,jdbcType=INTEGER},
+      </if>
+      <if test="record.projectMonitorRegion != null">
+        project_monitor_region = #{record.projectMonitorRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null">
+        property = #{record.property,jdbcType=INTEGER},
+      </if>
+      <if test="record.phoneNotified != null">
+        phone_notified = #{record.phoneNotified,jdbcType=BIT},
+      </if>
+      <if test="record.messageNotified != null">
+        message_notified = #{record.messageNotified,jdbcType=BIT},
+      </if>
+      <if test="record.appNotified != null">
+        app_notified = #{record.appNotified,jdbcType=BIT},
+      </if>
+      <if test="record.pushSwitch != null">
+        push_switch = #{record.pushSwitch,jdbcType=BIT},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logoUrl != null">
+        logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workflowId != null">
+        workflow_id = #{record.workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.serviceStartTime != null">
+        service_start_time = #{record.serviceStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.serviceEndTime != null">
+        service_end_time = #{record.serviceEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.personalProject != null">
+        personal_project = #{record.personalProject,jdbcType=BIT},
+      </if>
+      <if test="record.projectSource != null">
+        project_source = #{record.projectSource,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update project_base
+    set id = #{record.id,jdbcType=VARCHAR},
+      agent_id = #{record.agentId,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      country_code = #{record.countryCode,jdbcType=VARCHAR},
+      admin_id = #{record.adminId,jdbcType=VARCHAR},
+      first_level_region_code = #{record.firstLevelRegionCode,jdbcType=VARCHAR},
+      second_level_region_code = #{record.secondLevelRegionCode,jdbcType=VARCHAR},
+      third_level_region_code = #{record.thirdLevelRegionCode,jdbcType=VARCHAR},
+      four_level_region_code = #{record.fourLevelRegionCode,jdbcType=VARCHAR},
+      postal_code = #{record.postalCode,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      principal_name = #{record.principalName,jdbcType=VARCHAR},
+      principal_phone_number = #{record.principalPhoneNumber,jdbcType=VARCHAR},
+      duty_phone_number = #{record.dutyPhoneNumber,jdbcType=VARCHAR},
+      gcj02_latitude = #{record.gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{record.gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{record.wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{record.wgs84Longitude,jdbcType=DOUBLE},
+      project_state = #{record.projectState,jdbcType=INTEGER},
+      enable = #{record.enable,jdbcType=BIT},
+      audit_state = #{record.auditState,jdbcType=INTEGER},
+      project_monitor_region = #{record.projectMonitorRegion,jdbcType=VARCHAR},
+      property = #{record.property,jdbcType=INTEGER},
+      phone_notified = #{record.phoneNotified,jdbcType=BIT},
+      message_notified = #{record.messageNotified,jdbcType=BIT},
+      app_notified = #{record.appNotified,jdbcType=BIT},
+      push_switch = #{record.pushSwitch,jdbcType=BIT},
+      title = #{record.title,jdbcType=VARCHAR},
+      logo_url = #{record.logoUrl,jdbcType=VARCHAR},
+      workflow_id = #{record.workflowId,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      service_start_time = #{record.serviceStartTime,jdbcType=BIGINT},
+      service_end_time = #{record.serviceEndTime,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      personal_project = #{record.personalProject,jdbcType=BIT},
+      project_source = #{record.projectSource,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBase">
+    update project_base
+    <set>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="countryCode != null">
+        country_code = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLevelRegionCode != null">
+        first_level_region_code = #{firstLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="secondLevelRegionCode != null">
+        second_level_region_code = #{secondLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdLevelRegionCode != null">
+        third_level_region_code = #{thirdLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fourLevelRegionCode != null">
+        four_level_region_code = #{fourLevelRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="principalName != null">
+        principal_name = #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="principalPhoneNumber != null">
+        principal_phone_number = #{principalPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyPhoneNumber != null">
+        duty_phone_number = #{dutyPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="gcj02Latitude != null">
+        gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="gcj02Longitude != null">
+        gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Latitude != null">
+        wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="wgs84Longitude != null">
+        wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="projectState != null">
+        project_state = #{projectState,jdbcType=INTEGER},
+      </if>
+      <if test="enable != null">
+        enable = #{enable,jdbcType=BIT},
+      </if>
+      <if test="auditState != null">
+        audit_state = #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="projectMonitorRegion != null">
+        project_monitor_region = #{projectMonitorRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null">
+        property = #{property,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNotified != null">
+        phone_notified = #{phoneNotified,jdbcType=BIT},
+      </if>
+      <if test="messageNotified != null">
+        message_notified = #{messageNotified,jdbcType=BIT},
+      </if>
+      <if test="appNotified != null">
+        app_notified = #{appNotified,jdbcType=BIT},
+      </if>
+      <if test="pushSwitch != null">
+        push_switch = #{pushSwitch,jdbcType=BIT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null">
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="workflowId != null">
+        workflow_id = #{workflowId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="serviceStartTime != null">
+        service_start_time = #{serviceStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="serviceEndTime != null">
+        service_end_time = #{serviceEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="personalProject != null">
+        personal_project = #{personalProject,jdbcType=BIT},
+      </if>
+      <if test="projectSource != null">
+        project_source = #{projectSource,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.testConfig.db.mybatis.model.biz.ProjectBase">
+    update project_base
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=VARCHAR},
+      first_level_region_code = #{firstLevelRegionCode,jdbcType=VARCHAR},
+      second_level_region_code = #{secondLevelRegionCode,jdbcType=VARCHAR},
+      third_level_region_code = #{thirdLevelRegionCode,jdbcType=VARCHAR},
+      four_level_region_code = #{fourLevelRegionCode,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      principal_name = #{principalName,jdbcType=VARCHAR},
+      principal_phone_number = #{principalPhoneNumber,jdbcType=VARCHAR},
+      duty_phone_number = #{dutyPhoneNumber,jdbcType=VARCHAR},
+      gcj02_latitude = #{gcj02Latitude,jdbcType=DOUBLE},
+      gcj02_longitude = #{gcj02Longitude,jdbcType=DOUBLE},
+      wgs84_latitude = #{wgs84Latitude,jdbcType=DOUBLE},
+      wgs84_longitude = #{wgs84Longitude,jdbcType=DOUBLE},
+      project_state = #{projectState,jdbcType=INTEGER},
+      enable = #{enable,jdbcType=BIT},
+      audit_state = #{auditState,jdbcType=INTEGER},
+      project_monitor_region = #{projectMonitorRegion,jdbcType=VARCHAR},
+      property = #{property,jdbcType=INTEGER},
+      phone_notified = #{phoneNotified,jdbcType=BIT},
+      message_notified = #{messageNotified,jdbcType=BIT},
+      app_notified = #{appNotified,jdbcType=BIT},
+      push_switch = #{pushSwitch,jdbcType=BIT},
+      title = #{title,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      workflow_id = #{workflowId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      service_start_time = #{serviceStartTime,jdbcType=BIGINT},
+      service_end_time = #{serviceEndTime,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      personal_project = #{personalProject,jdbcType=BIT},
+      project_source = #{projectSource,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectIdListByExample" resultType="java.lang.String">
+    select id
+    from project_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+    
+  <select id="selectByExampleAndSuperUnitName" parameterType="map" resultMap="BaseResultMap">
+    select    
+    project_base.id, project_base.project_name, project_base.type, project_base.country_code, 
+    project_base.first_level_region_code, project_base.second_level_region_code, project_base.third_level_region_code, 
+    project_base.postal_code, project_base.address, project_base.principal_name, 
+    project_base.principal_phone_number, project_base.duty_phone_number, project_base.gcj02_latitude, project_base.gcj02_longitude, 
+    project_base.wgs84_latitude, project_base.wgs84_longitude, project_base.project_state, project_base.create_time, project_base.update_time, project_base.personal_project
+    from project_base LEFT JOIN project_extend ON project_base.id = project_extend.project_id
+    <if test="_parameter != null">
+      <include refid="MySelect_By_Example_Where_Clause" />
+      and project_extend.super_unit_name = #{superUnitName,jdbcType=VARCHAR}
+    </if>
+    <if test="_parameter = null">
+      where project_extend.super_unit_name = #{superUnitName,jdbcType=VARCHAR}
+    </if>
+    
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,9 @@
+{
+    "writeDbUrl":"jdbc:mysql://192.168.32.140:3306",
+    "read1Dburl":"jdbc:mysql://192.168.32.141:3306",
+    "read2Dburl":"jdbc:mysql://192.168.32.141:3306",
+    "read3Dburl":"jdbc:mysql://192.168.32.141:3306",
+    "userName":"master",
+    "password":"Tanda123*",
+    "configInfo":"?useSSL=false&useUnicode=true&characterEncoding=utf-8&connectTimeout=3000&socketTimeout=60000&serverTimezone=GMT%2B8"
+}

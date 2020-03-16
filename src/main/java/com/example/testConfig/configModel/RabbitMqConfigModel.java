@@ -3,7 +3,7 @@ package com.example.testConfig.configModel;
 import lombok.Data;
 
 @Data
-public class RabbitMqModel {
+public class RabbitMqConfigModel {
 	String addresses;
 	String username;
 	String password;
