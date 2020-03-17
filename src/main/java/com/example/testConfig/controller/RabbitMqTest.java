@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RabbitMqTest {
 
-	@RabbitListener(queues = {"message.test"})
+	@RabbitListener(queues = {"${rabbit.mq.queue.name}"})
 	public void process(Message message, Channel channel) throws IOException{
 		//获取接收消息
 		String receiveContent = new String(message.getBody(),"UTF-8");			

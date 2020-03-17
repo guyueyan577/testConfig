@@ -11,6 +11,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.fastjson.JSONObject;
 import com.example.testConfig.db.bizConfig.extend.DataSourceValidator;
 import com.example.testConfig.db.bizConfig.extend.MasterSlaveForFailOverLoadBalanceAlgorithmType;
 import com.example.testConfig.db.bizConfig.extend.RoundRobinMasterSlaveForFailOverLoadBalanceAlgorithm;
@@ -28,7 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class AbstractDataSourceConfig {
 
 	protected Map<Integer, AbstractDataSource> injectDataSourceMap = new HashMap<Integer, AbstractDataSource>();
-
 	
 	protected DataSource buildDruidDataSource(DataSource masterDataSource,String masterSlaveName) throws SQLException, InterruptedException {
 
@@ -46,11 +46,12 @@ public abstract class AbstractDataSourceConfig {
 				dataSource = injectDataSource.createDataSource();
 				druidDataSource = (DruidDataSource)dataSource;
 				slaveDataSourceMap.put("ds_slave" + i, dataSource);
+//				log.info(JSONObject.toJSONString(dataSource));
 				testCon = dataSource.getConnection();
 				dataSourceMap.put("ds_slave" + i, dataSource);
 				slaveList.add("ds_slave" + i);
 			} catch (Exception e) {
-				log.error("init database error:" + e.getMessage());
+				log.error("init database error:",e);
 				if(testCon!=null)
 					testCon.close();
 				druidDataSource.close();

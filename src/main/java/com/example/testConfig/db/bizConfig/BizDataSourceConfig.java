@@ -60,9 +60,4 @@ public class BizDataSourceConfig extends AbstractDataSourceConfig{
 	public void setR3DataSource(BizR3DataSource r3DataSource) {
 		injectDataSourceMap.put(new Integer(3), r3DataSource);
 	}
-
-	
-    
-
-
 }

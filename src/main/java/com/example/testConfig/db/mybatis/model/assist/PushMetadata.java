@@ -1,7 +1,5 @@
 package com.example.testConfig.db.mybatis.model.assist;
 
-import com.alibaba.fastjson.JSON;
-
 public class PushMetadata {
     private String id;
 

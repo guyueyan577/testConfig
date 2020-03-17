@@ -1,9 +1,17 @@
 package com.example.testConfig.db.ds;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix = "spring.datasource.permission")
+import com.alibaba.druid.pool.DruidDataSource;
+
 @Component
 public class PermWDataSource extends AbstractDataSource{
+	public DataSource createDataSource() {
+		super.getMysqlModel();
+		super.setDatabaseName("w", "permission");
+		DruidDataSource druidDataSource = (DruidDataSource)super.createDataSource();
+	    return druidDataSource;
+	}
 }
 

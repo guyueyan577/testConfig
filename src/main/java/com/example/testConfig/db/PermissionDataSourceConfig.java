@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class PermissionDataSourceConfig 
 {
     static final String PACKAGE = "com.example.testConfig.db.mybatis.mapper.permission";
-    static final String MAPPER_LOCATION = "classpath:com/zxycloud/common/dao/db/map/permission/*.xml";
+    static final String MAPPER_LOCATION = "classpath:com/example/testConfig/db/mybatis/map/permission/*.xml";
 
     @Bean(name = "permissionTransactionManager")
     public DataSourceTransactionManager permissionTransactionManager(@Qualifier("permissionDataSource") DataSource permissionDataSource) {

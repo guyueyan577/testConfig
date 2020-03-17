@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = MyBatisConfig.PACKAGE, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MyBatisConfig {
 	static final String PACKAGE = "com.example.testConfig.db.mybatis.mapper.biz";
-    static final String MAPPER_LOCATION = "classpath:com/zxycloud/common/dao/db/map/biz/*.xml";
+    static final String MAPPER_LOCATION = "classpath:com/example/testConfig/db/mybatis/map/biz/*.xml";
     
 	@Autowired
     @Qualifier("businessDataSource")

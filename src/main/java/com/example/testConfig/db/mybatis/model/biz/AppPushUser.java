@@ -1,7 +1,5 @@
 package com.example.testConfig.db.mybatis.model.biz;
 
-import java.util.Date;
-
 public class AppPushUser {
     private String tokenId;
 

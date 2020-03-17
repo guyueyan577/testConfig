@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class FirePatrolDataSourceConfig 
 {
     static final String PACKAGE = "com.example.testConfig.db.mybatis.mapper.firepatrol";
-    static final String MAPPER_LOCATION = "classpath:com/zxycloud/common/dao/db/map/firepatrol/*.xml";
+    static final String MAPPER_LOCATION = "classpath:com/example/testConfig/db/mybatis/map/firepatrol/*.xml";
 
  
     @Bean(name = "firePatrolTransactionManager")

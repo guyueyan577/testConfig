@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class ThirdBusinessDataSourceConfig 
 {
     static final String PACKAGE = "com.example.testConfig.db.mybatis.mapper.thirdbiz";
-    static final String MAPPER_LOCATION = "classpath:com/zxycloud/common/dao/db/map/thirdbiz/*.xml";
+    static final String MAPPER_LOCATION = "classpath:com/example/testConfig/db/mybatis/map/thirdbiz/*.xml";
 
  
     @Bean(name = "thirdBusinessTransactionManager")

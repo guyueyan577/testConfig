@@ -1,10 +1,16 @@
 package com.example.testConfig.db.ds;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
+import com.alibaba.druid.pool.DruidDataSource;
 
-@ConfigurationProperties(prefix = "spring.datasource.assistr3")
 @Component
 public class AssistR3DataSource extends AbstractDataSource {
+	public DataSource createDataSource() {
+		super.getMysqlModel();
+		super.setDatabaseName("r3", "function_assist");
+		DruidDataSource druidDataSource = (DruidDataSource)super.createDataSource();
+	    return druidDataSource;
+	}
 }
