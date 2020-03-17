@@ -1,9 +1,21 @@
 {
     "writeDbUrl":"jdbc:mysql://192.168.32.140:3306",
     "read1Dburl":"jdbc:mysql://192.168.32.141:3306",
-    "read2Dburl":"jdbc:mysql://192.168.32.141:3306",
-    "read3Dburl":"jdbc:mysql://192.168.32.141:3306",
+    "read2Dburl":"jdbc:mysql://192.168.32.27:3306",
+    "read3Dburl":"jdbc:mysql://192.168.32.27:3306",
     "userName":"master",
     "password":"Tanda123*",
+    "maxWait":"5000",
+    "maxActive":"100",
+    "removeAbandonedTimeout":"180",
+    "minEvictableIdleTimeMillis":"40000",
+    "maxEvictableIdleTimeMillis":"180000",
+    "minIdle":"1",
+    "initialSize":"5",
+    "betweenEvictionRunsMillis":"60000",
+    "connectionErrorRetryAttempts":"1",
+    "phyTimeoutMillis":"15000",
+    "driverClassName":"com.mysql.cj.jdbc.Driver",
+    "dataSourceType":"com.alibaba.druid.pool.DruidDataSource",
     "configInfo":"?useSSL=false&useUnicode=true&characterEncoding=utf-8&connectTimeout=3000&socketTimeout=60000&serverTimezone=GMT%2B8"
 }

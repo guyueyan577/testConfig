@@ -1,7 +1,7 @@
 {
-    "nodes":"chenjianwei-pc:6379",
-    "password":"",
-    "database":0,
+    "nodes":"192.168.32.36:6379",
+    "password":"123456",
+    "database":5,
     "maxActive":20,
     "maxWait":200,
     "maxIdle":400,
