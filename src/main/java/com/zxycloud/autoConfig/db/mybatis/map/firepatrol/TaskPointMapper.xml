@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxycloud.autoConfig.db.mybatis.mapper.firepatrol.TaskPointMapper">
+  <resultMap id="BaseResultMap" type="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPoint">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="patrol_task_id" jdbcType="VARCHAR" property="patrolTaskId" />
+    <result column="patrol_point_id" jdbcType="VARCHAR" property="patrolPointId" />
+    <result column="result_state" jdbcType="INTEGER" property="resultState" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="patrol_point_name" jdbcType="VARCHAR" property="patrolPointName" />
+    <result column="patrol_item_type" jdbcType="INTEGER" property="patrolItemType" />
+    <result column="equ_type" jdbcType="INTEGER" property="equType" />
+    <result column="equ_name" jdbcType="VARCHAR" property="equName" />
+    <result column="tag_number" jdbcType="VARCHAR" property="tagNumber" />
+    <result column="card_type" jdbcType="INTEGER" property="cardType" />
+    <result column="card_name" jdbcType="VARCHAR" property="cardName" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="building_id" jdbcType="VARCHAR" property="buildingId" />
+    <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
+    <result column="floor_id" jdbcType="VARCHAR" property="floorId" />
+    <result column="floor_name" jdbcType="VARCHAR" property="floorName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, patrol_task_id, patrol_point_id, result_state, des, remark, create_time, update_time, 
+    company_id, company_name, patrol_point_name, patrol_item_type, equ_type, equ_name, 
+    tag_number, card_type, card_name, area_id, area_name, building_id, building_name, 
+    floor_id, floor_name, address
+  </sql>
+  <select id="selectByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPointExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from task_point
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task_point
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from task_point
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPointExample">
+    delete from task_point
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPoint">
+    insert into task_point (id, patrol_task_id, patrol_point_id, 
+      result_state, des, remark, 
+      create_time, update_time, company_id, 
+      company_name, patrol_point_name, patrol_item_type, 
+      equ_type, equ_name, tag_number, 
+      card_type, card_name, area_id, 
+      area_name, building_id, building_name, 
+      floor_id, floor_name, address
+      )
+    values (#{id,jdbcType=VARCHAR}, #{patrolTaskId,jdbcType=VARCHAR}, #{patrolPointId,jdbcType=VARCHAR}, 
+      #{resultState,jdbcType=INTEGER}, #{des,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{companyId,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{patrolPointName,jdbcType=VARCHAR}, #{patrolItemType,jdbcType=INTEGER}, 
+      #{equType,jdbcType=INTEGER}, #{equName,jdbcType=VARCHAR}, #{tagNumber,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=INTEGER}, #{cardName,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR}, 
+      #{areaName,jdbcType=VARCHAR}, #{buildingId,jdbcType=VARCHAR}, #{buildingName,jdbcType=VARCHAR}, 
+      #{floorId,jdbcType=VARCHAR}, #{floorName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPoint">
+    insert into task_point
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="patrolTaskId != null">
+        patrol_task_id,
+      </if>
+      <if test="patrolPointId != null">
+        patrol_point_id,
+      </if>
+      <if test="resultState != null">
+        result_state,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="patrolPointName != null">
+        patrol_point_name,
+      </if>
+      <if test="patrolItemType != null">
+        patrol_item_type,
+      </if>
+      <if test="equType != null">
+        equ_type,
+      </if>
+      <if test="equName != null">
+        equ_name,
+      </if>
+      <if test="tagNumber != null">
+        tag_number,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="cardName != null">
+        card_name,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="buildingName != null">
+        building_name,
+      </if>
+      <if test="floorId != null">
+        floor_id,
+      </if>
+      <if test="floorName != null">
+        floor_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolTaskId != null">
+        #{patrolTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPointId != null">
+        #{patrolPointId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultState != null">
+        #{resultState,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPointName != null">
+        #{patrolPointName,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolItemType != null">
+        #{patrolItemType,jdbcType=INTEGER},
+      </if>
+      <if test="equType != null">
+        #{equType,jdbcType=INTEGER},
+      </if>
+      <if test="equName != null">
+        #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagNumber != null">
+        #{tagNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null">
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="floorId != null">
+        #{floorId,jdbcType=VARCHAR},
+      </if>
+      <if test="floorName != null">
+        #{floorName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPointExample" resultType="java.lang.Long">
+    select count(*) from task_point
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update task_point
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patrolTaskId != null">
+        patrol_task_id = #{record.patrolTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patrolPointId != null">
+        patrol_point_id = #{record.patrolPointId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultState != null">
+        result_state = #{record.resultState,jdbcType=INTEGER},
+      </if>
+      <if test="record.des != null">
+        des = #{record.des,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyId != null">
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null">
+        company_name = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patrolPointName != null">
+        patrol_point_name = #{record.patrolPointName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patrolItemType != null">
+        patrol_item_type = #{record.patrolItemType,jdbcType=INTEGER},
+      </if>
+      <if test="record.equType != null">
+        equ_type = #{record.equType,jdbcType=INTEGER},
+      </if>
+      <if test="record.equName != null">
+        equ_name = #{record.equName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tagNumber != null">
+        tag_number = #{record.tagNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null">
+        card_type = #{record.cardType,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardName != null">
+        card_name = #{record.cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null">
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingId != null">
+        building_id = #{record.buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildingName != null">
+        building_name = #{record.buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorId != null">
+        floor_id = #{record.floorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.floorName != null">
+        floor_name = #{record.floorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update task_point
+    set id = #{record.id,jdbcType=VARCHAR},
+      patrol_task_id = #{record.patrolTaskId,jdbcType=VARCHAR},
+      patrol_point_id = #{record.patrolPointId,jdbcType=VARCHAR},
+      result_state = #{record.resultState,jdbcType=INTEGER},
+      des = #{record.des,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      company_name = #{record.companyName,jdbcType=VARCHAR},
+      patrol_point_name = #{record.patrolPointName,jdbcType=VARCHAR},
+      patrol_item_type = #{record.patrolItemType,jdbcType=INTEGER},
+      equ_type = #{record.equType,jdbcType=INTEGER},
+      equ_name = #{record.equName,jdbcType=VARCHAR},
+      tag_number = #{record.tagNumber,jdbcType=VARCHAR},
+      card_type = #{record.cardType,jdbcType=INTEGER},
+      card_name = #{record.cardName,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      building_id = #{record.buildingId,jdbcType=VARCHAR},
+      building_name = #{record.buildingName,jdbcType=VARCHAR},
+      floor_id = #{record.floorId,jdbcType=VARCHAR},
+      floor_name = #{record.floorName,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPoint">
+    update task_point
+    <set>
+      <if test="patrolTaskId != null">
+        patrol_task_id = #{patrolTaskId,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPointId != null">
+        patrol_point_id = #{patrolPointId,jdbcType=VARCHAR},
+      </if>
+      <if test="resultState != null">
+        result_state = #{resultState,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPointName != null">
+        patrol_point_name = #{patrolPointName,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolItemType != null">
+        patrol_item_type = #{patrolItemType,jdbcType=INTEGER},
+      </if>
+      <if test="equType != null">
+        equ_type = #{equType,jdbcType=INTEGER},
+      </if>
+      <if test="equName != null">
+        equ_name = #{equName,jdbcType=VARCHAR},
+      </if>
+      <if test="tagNumber != null">
+        tag_number = #{tagNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null">
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null">
+        building_name = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="floorId != null">
+        floor_id = #{floorId,jdbcType=VARCHAR},
+      </if>
+      <if test="floorName != null">
+        floor_name = #{floorName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxycloud.autoConfig.db.mybatis.model.firepatrol.TaskPoint">
+    update task_point
+    set patrol_task_id = #{patrolTaskId,jdbcType=VARCHAR},
+      patrol_point_id = #{patrolPointId,jdbcType=VARCHAR},
+      result_state = #{resultState,jdbcType=INTEGER},
+      des = #{des,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      patrol_point_name = #{patrolPointName,jdbcType=VARCHAR},
+      patrol_item_type = #{patrolItemType,jdbcType=INTEGER},
+      equ_type = #{equType,jdbcType=INTEGER},
+      equ_name = #{equName,jdbcType=VARCHAR},
+      tag_number = #{tagNumber,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=VARCHAR},
+      building_name = #{buildingName,jdbcType=VARCHAR},
+      floor_id = #{floorId,jdbcType=VARCHAR},
+      floor_name = #{floorName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxycloud.autoConfig.db.mybatis.mapper.biz.VideoInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfo">
+    <id column="guid" jdbcType="VARCHAR" property="guid" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="port" jdbcType="VARCHAR" property="port" />
+    <result column="protocol" jdbcType="VARCHAR" property="protocol" />
+    <result column="stream_name" jdbcType="VARCHAR" property="streamName" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="video_name" jdbcType="VARCHAR" property="videoName" />
+    <result column="pub_url" jdbcType="VARCHAR" property="pubUrl" />
+    <result column="source_addr" jdbcType="VARCHAR" property="sourceAddr" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="project_guid" jdbcType="VARCHAR" property="projectGuid" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="zone_guid" jdbcType="VARCHAR" property="zoneGuid" />
+    <result column="zone_name" jdbcType="VARCHAR" property="zoneName" />
+    <result column="place_guid" jdbcType="VARCHAR" property="placeGuid" />
+    <result column="place_name" jdbcType="VARCHAR" property="placeName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="pub_token" jdbcType="VARCHAR" property="pubToken" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    guid, ip, port, protocol, stream_name, app_name, video_name, pub_url, source_addr, 
+    address, project_guid, project_name, zone_guid, zone_name, place_guid, place_name, 
+    remark, pub_token, create_time, update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from video_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from video_info
+    where guid = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from video_info
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfoExample">
+    delete from video_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfo">
+    insert into video_info (guid, ip, port, 
+      protocol, stream_name, app_name, 
+      video_name, pub_url, source_addr, 
+      address, project_guid, project_name, 
+      zone_guid, zone_name, place_guid, 
+      place_name, remark, pub_token, 
+      create_time, update_time)
+    values (#{guid,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, 
+      #{protocol,jdbcType=VARCHAR}, #{streamName,jdbcType=VARCHAR}, #{appName,jdbcType=VARCHAR}, 
+      #{videoName,jdbcType=VARCHAR}, #{pubUrl,jdbcType=VARCHAR}, #{sourceAddr,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{projectGuid,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{zoneGuid,jdbcType=VARCHAR}, #{zoneName,jdbcType=VARCHAR}, #{placeGuid,jdbcType=VARCHAR}, 
+      #{placeName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{pubToken,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfo">
+    insert into video_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        guid,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="port != null">
+        port,
+      </if>
+      <if test="protocol != null">
+        protocol,
+      </if>
+      <if test="streamName != null">
+        stream_name,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="videoName != null">
+        video_name,
+      </if>
+      <if test="pubUrl != null">
+        pub_url,
+      </if>
+      <if test="sourceAddr != null">
+        source_addr,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="projectGuid != null">
+        project_guid,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="zoneGuid != null">
+        zone_guid,
+      </if>
+      <if test="zoneName != null">
+        zone_name,
+      </if>
+      <if test="placeGuid != null">
+        place_guid,
+      </if>
+      <if test="placeName != null">
+        place_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="pubToken != null">
+        pub_token,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guid != null">
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null">
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="streamName != null">
+        #{streamName,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoName != null">
+        #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="pubUrl != null">
+        #{pubUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAddr != null">
+        #{sourceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="projectGuid != null">
+        #{projectGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneGuid != null">
+        #{zoneGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneName != null">
+        #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeGuid != null">
+        #{placeGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null">
+        #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="pubToken != null">
+        #{pubToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfoExample" resultType="java.lang.Long">
+    select count(*) from video_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update video_info
+    <set>
+      <if test="record.guid != null">
+        guid = #{record.guid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.port != null">
+        port = #{record.port,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocol != null">
+        protocol = #{record.protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.streamName != null">
+        stream_name = #{record.streamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appName != null">
+        app_name = #{record.appName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoName != null">
+        video_name = #{record.videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubUrl != null">
+        pub_url = #{record.pubUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceAddr != null">
+        source_addr = #{record.sourceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectGuid != null">
+        project_guid = #{record.projectGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null">
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zoneGuid != null">
+        zone_guid = #{record.zoneGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zoneName != null">
+        zone_name = #{record.zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeGuid != null">
+        place_guid = #{record.placeGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeName != null">
+        place_name = #{record.placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubToken != null">
+        pub_token = #{record.pubToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update video_info
+    set guid = #{record.guid,jdbcType=VARCHAR},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      port = #{record.port,jdbcType=VARCHAR},
+      protocol = #{record.protocol,jdbcType=VARCHAR},
+      stream_name = #{record.streamName,jdbcType=VARCHAR},
+      app_name = #{record.appName,jdbcType=VARCHAR},
+      video_name = #{record.videoName,jdbcType=VARCHAR},
+      pub_url = #{record.pubUrl,jdbcType=VARCHAR},
+      source_addr = #{record.sourceAddr,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      project_guid = #{record.projectGuid,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      zone_guid = #{record.zoneGuid,jdbcType=VARCHAR},
+      zone_name = #{record.zoneName,jdbcType=VARCHAR},
+      place_guid = #{record.placeGuid,jdbcType=VARCHAR},
+      place_name = #{record.placeName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      pub_token = #{record.pubToken,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfo">
+    update video_info
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null">
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null">
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="streamName != null">
+        stream_name = #{streamName,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="videoName != null">
+        video_name = #{videoName,jdbcType=VARCHAR},
+      </if>
+      <if test="pubUrl != null">
+        pub_url = #{pubUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAddr != null">
+        source_addr = #{sourceAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="projectGuid != null">
+        project_guid = #{projectGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneGuid != null">
+        zone_guid = #{zoneGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneName != null">
+        zone_name = #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeGuid != null">
+        place_guid = #{placeGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null">
+        place_name = #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="pubToken != null">
+        pub_token = #{pubToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.VideoInfo">
+    update video_info
+    set ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      stream_name = #{streamName,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      video_name = #{videoName,jdbcType=VARCHAR},
+      pub_url = #{pubUrl,jdbcType=VARCHAR},
+      source_addr = #{sourceAddr,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      project_guid = #{projectGuid,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      zone_guid = #{zoneGuid,jdbcType=VARCHAR},
+      zone_name = #{zoneName,jdbcType=VARCHAR},
+      place_guid = #{placeGuid,jdbcType=VARCHAR},
+      place_name = #{placeName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      pub_token = #{pubToken,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

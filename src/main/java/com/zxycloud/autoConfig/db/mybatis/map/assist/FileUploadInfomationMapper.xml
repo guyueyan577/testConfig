@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxycloud.autoConfig.db.mybatis.mapper.assist.FileUploadInfomationMapper">
+  <resultMap id="BaseResultMap" type="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="module_code" jdbcType="INTEGER" property="moduleCode" />
+    <result column="file_type_code" jdbcType="INTEGER" property="fileTypeCode" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sort_scort" jdbcType="INTEGER" property="sortScort" />
+    <result column="binding_id" jdbcType="VARCHAR" property="bindingId" />
+    <result column="file_url_type" jdbcType="INTEGER" property="fileUrlType" />
+    <result column="img_width" jdbcType="DOUBLE" property="imgWidth" />
+    <result column="img_height" jdbcType="DOUBLE" property="imgHeight" />
+    <result column="thumb_img_url" jdbcType="VARCHAR" property="thumbImgUrl" />
+    <result column="thumb_img_width" jdbcType="DOUBLE" property="thumbImgWidth" />
+    <result column="thumb_img_height" jdbcType="DOUBLE" property="thumbImgHeight" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, module_code, file_type_code, file_url, description, sort_scort, binding_id, file_url_type, 
+    img_width, img_height, thumb_img_url, thumb_img_width, thumb_img_height, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from file_upload_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from file_upload_infomation
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from file_upload_infomation
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomationExample">
+    delete from file_upload_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomation">
+    insert into file_upload_infomation (id, module_code, file_type_code, 
+      file_url, description, sort_scort, 
+      binding_id, file_url_type, img_width, 
+      img_height, thumb_img_url, thumb_img_width, 
+      thumb_img_height, create_time, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{moduleCode,jdbcType=INTEGER}, #{fileTypeCode,jdbcType=INTEGER}, 
+      #{fileUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{sortScort,jdbcType=INTEGER}, 
+      #{bindingId,jdbcType=VARCHAR}, #{fileUrlType,jdbcType=INTEGER}, #{imgWidth,jdbcType=DOUBLE}, 
+      #{imgHeight,jdbcType=DOUBLE}, #{thumbImgUrl,jdbcType=VARCHAR}, #{thumbImgWidth,jdbcType=DOUBLE}, 
+      #{thumbImgHeight,jdbcType=DOUBLE}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomation">
+    insert into file_upload_infomation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+      <if test="fileTypeCode != null">
+        file_type_code,
+      </if>
+      <if test="fileUrl != null">
+        file_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sortScort != null">
+        sort_scort,
+      </if>
+      <if test="bindingId != null">
+        binding_id,
+      </if>
+      <if test="fileUrlType != null">
+        file_url_type,
+      </if>
+      <if test="imgWidth != null">
+        img_width,
+      </if>
+      <if test="imgHeight != null">
+        img_height,
+      </if>
+      <if test="thumbImgUrl != null">
+        thumb_img_url,
+      </if>
+      <if test="thumbImgWidth != null">
+        thumb_img_width,
+      </if>
+      <if test="thumbImgHeight != null">
+        thumb_img_height,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=INTEGER},
+      </if>
+      <if test="fileTypeCode != null">
+        #{fileTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="fileUrl != null">
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortScort != null">
+        #{sortScort,jdbcType=INTEGER},
+      </if>
+      <if test="bindingId != null">
+        #{bindingId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrlType != null">
+        #{fileUrlType,jdbcType=INTEGER},
+      </if>
+      <if test="imgWidth != null">
+        #{imgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="imgHeight != null">
+        #{imgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="thumbImgUrl != null">
+        #{thumbImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbImgWidth != null">
+        #{thumbImgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="thumbImgHeight != null">
+        #{thumbImgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomationExample" resultType="java.lang.Long">
+    select count(*) from file_upload_infomation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update file_upload_infomation
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduleCode != null">
+        module_code = #{record.moduleCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileTypeCode != null">
+        file_type_code = #{record.fileTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileUrl != null">
+        file_url = #{record.fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortScort != null">
+        sort_scort = #{record.sortScort,jdbcType=INTEGER},
+      </if>
+      <if test="record.bindingId != null">
+        binding_id = #{record.bindingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileUrlType != null">
+        file_url_type = #{record.fileUrlType,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgWidth != null">
+        img_width = #{record.imgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.imgHeight != null">
+        img_height = #{record.imgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.thumbImgUrl != null">
+        thumb_img_url = #{record.thumbImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbImgWidth != null">
+        thumb_img_width = #{record.thumbImgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.thumbImgHeight != null">
+        thumb_img_height = #{record.thumbImgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update file_upload_infomation
+    set id = #{record.id,jdbcType=VARCHAR},
+      module_code = #{record.moduleCode,jdbcType=INTEGER},
+      file_type_code = #{record.fileTypeCode,jdbcType=INTEGER},
+      file_url = #{record.fileUrl,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      sort_scort = #{record.sortScort,jdbcType=INTEGER},
+      binding_id = #{record.bindingId,jdbcType=VARCHAR},
+      file_url_type = #{record.fileUrlType,jdbcType=INTEGER},
+      img_width = #{record.imgWidth,jdbcType=DOUBLE},
+      img_height = #{record.imgHeight,jdbcType=DOUBLE},
+      thumb_img_url = #{record.thumbImgUrl,jdbcType=VARCHAR},
+      thumb_img_width = #{record.thumbImgWidth,jdbcType=DOUBLE},
+      thumb_img_height = #{record.thumbImgHeight,jdbcType=DOUBLE},
+      create_time = #{record.createTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomation">
+    update file_upload_infomation
+    <set>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=INTEGER},
+      </if>
+      <if test="fileTypeCode != null">
+        file_type_code = #{fileTypeCode,jdbcType=INTEGER},
+      </if>
+      <if test="fileUrl != null">
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sortScort != null">
+        sort_scort = #{sortScort,jdbcType=INTEGER},
+      </if>
+      <if test="bindingId != null">
+        binding_id = #{bindingId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrlType != null">
+        file_url_type = #{fileUrlType,jdbcType=INTEGER},
+      </if>
+      <if test="imgWidth != null">
+        img_width = #{imgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="imgHeight != null">
+        img_height = #{imgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="thumbImgUrl != null">
+        thumb_img_url = #{thumbImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbImgWidth != null">
+        thumb_img_width = #{thumbImgWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="thumbImgHeight != null">
+        thumb_img_height = #{thumbImgHeight,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxycloud.autoConfig.db.mybatis.model.assist.FileUploadInfomation">
+    update file_upload_infomation
+    set module_code = #{moduleCode,jdbcType=INTEGER},
+      file_type_code = #{fileTypeCode,jdbcType=INTEGER},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort_scort = #{sortScort,jdbcType=INTEGER},
+      binding_id = #{bindingId,jdbcType=VARCHAR},
+      file_url_type = #{fileUrlType,jdbcType=INTEGER},
+      img_width = #{imgWidth,jdbcType=DOUBLE},
+      img_height = #{imgHeight,jdbcType=DOUBLE},
+      thumb_img_url = #{thumbImgUrl,jdbcType=VARCHAR},
+      thumb_img_width = #{thumbImgWidth,jdbcType=DOUBLE},
+      thumb_img_height = #{thumbImgHeight,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

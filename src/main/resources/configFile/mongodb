@@ -1,0 +1,19 @@
+{
+    "address":"192.168.32.42:27017",
+    "connectTimeout":10000,
+    "database":"testAutoConfig",
+    "heartbeatConnectTimeout":20000,
+    "heartbeatFrequency":10000,
+    "heartbeatSocketTimeout":20000,
+    "maxConnectionIdleTime":0,
+    "maxConnectionLifeTime":0,
+    "maxConnectionsPerHost":1000,
+    "maxWaitTime":120000,
+    "minConnectionsPerHost":0,
+    "minHeartbeatFrequency":500,
+    "password":"123456",
+    "serverSelectionTimeout":30000,
+    "socketTimeout":0,
+    "threadsAllowedToBlockForConnectionMultiplier":5,
+    "username":"master"
+}

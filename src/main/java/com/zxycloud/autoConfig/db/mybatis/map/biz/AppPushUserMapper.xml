@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxycloud.autoConfig.db.mybatis.mapper.biz.AppPushUserMapper">
+  <resultMap id="BaseResultMap" type="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUser">
+    <id column="token_id" jdbcType="VARCHAR" property="tokenId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="app_type_id" jdbcType="INTEGER" property="appTypeId" />
+    <result column="push_id" jdbcType="VARCHAR" property="pushId" />
+    <result column="service_provider_id" jdbcType="INTEGER" property="serviceProviderId" />
+    <result column="add_time" jdbcType="BIGINT" property="addTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    token_id, user_id, app_type_id, push_id, service_provider_id, add_time
+  </sql>
+  <select id="selectByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from app_push_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app_push_user
+    where token_id = #{tokenId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from app_push_user
+    where token_id = #{tokenId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUserExample">
+    delete from app_push_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUser">
+    insert into app_push_user (token_id, user_id, app_type_id, 
+      push_id, service_provider_id, add_time
+      )
+    values (#{tokenId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{appTypeId,jdbcType=INTEGER}, 
+      #{pushId,jdbcType=VARCHAR}, #{serviceProviderId,jdbcType=INTEGER}, #{addTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUser">
+    insert into app_push_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tokenId != null">
+        token_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="appTypeId != null">
+        app_type_id,
+      </if>
+      <if test="pushId != null">
+        push_id,
+      </if>
+      <if test="serviceProviderId != null">
+        service_provider_id,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tokenId != null">
+        #{tokenId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTypeId != null">
+        #{appTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pushId != null">
+        #{pushId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProviderId != null">
+        #{serviceProviderId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUserExample" resultType="java.lang.Long">
+    select count(*) from app_push_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update app_push_user
+    <set>
+      <if test="record.tokenId != null">
+        token_id = #{record.tokenId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appTypeId != null">
+        app_type_id = #{record.appTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pushId != null">
+        push_id = #{record.pushId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceProviderId != null">
+        service_provider_id = #{record.serviceProviderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update app_push_user
+    set token_id = #{record.tokenId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      app_type_id = #{record.appTypeId,jdbcType=INTEGER},
+      push_id = #{record.pushId,jdbcType=VARCHAR},
+      service_provider_id = #{record.serviceProviderId,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUser">
+    update app_push_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="appTypeId != null">
+        app_type_id = #{appTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pushId != null">
+        push_id = #{pushId,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProviderId != null">
+        service_provider_id = #{serviceProviderId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where token_id = #{tokenId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxycloud.autoConfig.db.mybatis.model.biz.AppPushUser">
+    update app_push_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      app_type_id = #{appTypeId,jdbcType=INTEGER},
+      push_id = #{pushId,jdbcType=VARCHAR},
+      service_provider_id = #{serviceProviderId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=BIGINT}
+    where token_id = #{tokenId,jdbcType=VARCHAR}
+  </update>
+</mapper>
