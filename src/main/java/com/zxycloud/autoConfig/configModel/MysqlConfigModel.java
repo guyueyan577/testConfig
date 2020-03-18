@@ -4,6 +4,9 @@ import lombok.Data;
 
 @Data
 public class MysqlConfigModel {
+	/**
+	 * 1写3读数据库地址，格式：jdbc:mysql://192.168.32.140:3306
+	 */
 	String writeDbUrl;
 	String read1Dburl;
 	String read2Dburl;
