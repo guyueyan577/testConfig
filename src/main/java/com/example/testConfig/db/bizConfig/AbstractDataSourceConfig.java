@@ -11,7 +11,6 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.fastjson.JSONObject;
 import com.example.testConfig.db.bizConfig.extend.DataSourceValidator;
 import com.example.testConfig.db.bizConfig.extend.MasterSlaveForFailOverLoadBalanceAlgorithmType;
 import com.example.testConfig.db.bizConfig.extend.RoundRobinMasterSlaveForFailOverLoadBalanceAlgorithm;
