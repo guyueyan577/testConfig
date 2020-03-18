@@ -10,10 +10,10 @@
 		<version>2.0.6.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>testConfig</artifactId>
+	<groupId>com.zxycloud</groupId>
+	<artifactId>autoConfig</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>testConfig</name>
+	<name>autoConfig</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -138,6 +138,24 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		 <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.jar</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
 	</build>
 
 </project>
